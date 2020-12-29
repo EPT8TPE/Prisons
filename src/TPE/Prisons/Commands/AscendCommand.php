@@ -21,7 +21,7 @@ class AscendCommand extends Command {
     public function __construct() {
         parent::__construct("ascend", "Ascend to the next ascension level, resetting your prisons rank and money to 0.", TextFormat::RED . "Usage: /ascend");
         $this->setPermission("prisons.ascend");
-        $this->messages = new Config(Prisons::get()->getDataFolder() . "messages.yml", Config::YAML);
+        $this->messages = Prisons::get()->getConfig();
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
