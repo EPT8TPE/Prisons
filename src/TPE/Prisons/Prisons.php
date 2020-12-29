@@ -35,7 +35,6 @@ class Prisons extends PluginBase {
         self::$provider->initDb();
         self::$configuration = new Configuration();
         
-        $this->saveResource("messages.yml");
         $this->saveResource("playerlist.yml");
     }
     
@@ -44,7 +43,6 @@ class Prisons extends PluginBase {
             self::$provider->closeDb();
         }
         
-        $this->saveResource("messages.yml");
         $this->saveResource("playerlist.yml");
     }
 
