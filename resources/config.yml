@@ -1,0 +1,143 @@
+# Configuration file for Prisons by TPE.
+
+# Version, do not change.
+
+version: 1
+
+# Ranks for prisons, do not alter the lowercase letters, you can modify the rankName,
+# rank price and added-permissions, set out the added-permissions as follows:
+# added-permissions:
+#  - "test.permission"
+#  - "test2.permission"
+
+ranks:
+  a:
+    price: 1000
+    rankName: A
+    added-permissions: []
+  b:
+    price: 2500
+    rankName: B
+    added-permissions: []
+  c:
+    price: 5000
+    rankName: C
+    added-permissions: []
+  d:
+    price: 10000
+    rankName: D
+    added-permissions: []
+  e:
+    price: 20000
+    rankName: E
+    added-permissions: []
+  f:
+    price: 50000
+    rankName: F
+    added-permissions: []
+  g:
+    price: 100000
+    rankName: G
+    added-permissions: []
+  h:
+    price: 175000
+    rankName: H
+    added-permissions: []
+  i:
+    price: 300000
+    rankName: I
+    added-permissions: []
+  j:
+    price: 450000
+    rankName: J
+    added-permissions: []
+  k:
+    price: 650000
+    rankName: K
+    added-permissions: []
+  l:
+    price: 900000
+    rankName: L
+    added-permissions: []
+  m:
+    price: 1200000
+    rankName: M
+    added-permissions: []
+  n:
+    price: 1550000
+    rankName: N
+    added-permissions: []
+  o:
+    price: 1900000
+    rankName: O
+    added-permissions: []
+  p:
+    price: 2500000
+    rankName: P
+    added-permissions: []
+  q:
+    price: 3150000
+    rankName: Q
+    added-permissions: []
+  r:
+    price: 3700000
+    rankName: R
+    added-permissions: []
+  s:
+    price: 4400000
+    rankName: S
+    added-permissions: []
+  t:
+    price: 5150000
+    rankName: T
+    added-permissions: []
+  u:
+    price: 5900000
+    rankName: U
+    added-permissions: []
+  v:
+    price: 6900000
+    rankName: V
+    added-permissions: []
+  w:
+    price: 7000000
+    rankName: W
+    added-permissions: []
+  x:
+    price: 8200000
+    rankName: X
+    added-permissions: []
+  y:
+    price: 9300000
+    rankName: Y
+    added-permissions: []
+  z:
+    price: 11000000
+    rankName: Z
+    added-permissions: []
+
+# Ascending resets the prison rank of a player, the rank up prices are then multiplied by the following number:
+
+ascension-multiplier: 1.25
+
+# Name the world players are teleported to after ascending, leave empty for default world.
+
+world-name: ""
+
+# Set out removed-permissions in the same way as added-permissions.
+
+# Regardless of what 'price' is, if the player has enough their money is reset to 0 to avoid exploits.
+
+ascensions:
+  1:
+    price: 15000000
+    added-permissions: []
+    removed-permissions: []
+  2:
+    price: 25000000
+    added-permissions: []
+    removed-permissions: []
+  3:
+    price: 50000000
+    added-permissions: []
+    removed-permissions: []

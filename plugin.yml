@@ -1,0 +1,23 @@
+name: Prisons
+version: 1.0.0
+api: 3.0.0
+author: TPE
+main: TPE\Prisons\Prisons
+depend:
+  - EconomyAPI
+  - PurePerms
+
+permissions:
+  prisons.*:
+    default: op
+    description: Allows access to all prison commands.
+    children:
+      prisons.rankup:
+        default: true
+        description: Allows user to use /rankup.
+      prisons.ascend:
+        default: true
+        description: Allows players to use /ascend.
+      prisons.reset:
+        default: op
+        description: Allows players to use /reset.
