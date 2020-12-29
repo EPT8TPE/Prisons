@@ -18,8 +18,6 @@ class Prisons extends PluginBase {
 
     private static $provider;
 
-    private static $configuration;
-
     public function onLoad() {
         self::$instance = $this;
     }
@@ -33,7 +31,6 @@ class Prisons extends PluginBase {
 
         self::$provider = new SQLite3();
         self::$provider->initDb();
-        self::$configuration = new Configuration();
         
         $this->saveResource("playerlist.yml");
     }
@@ -78,7 +75,5 @@ class Prisons extends PluginBase {
     public function setAscension(string $player, int $ascension) : void {
         self::getProvider()->setPlayerData($player, "ascension", $ascension);
     }
-
-
 
 }
