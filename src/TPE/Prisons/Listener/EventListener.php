@@ -32,7 +32,7 @@ class EventListener implements Listener {
     }
 
     public function onChat(PlayerChatEvent $event) {
-        $event->setFormat(str_replace(["{RANK}", "{PRESTIGE}"], [Configuration::getRankName($event->getPlayer()), Prisons::get()->getPrestige($event->getPlayer())]));
+        $event->setFormat(str_replace(["{RANK}", "{PRESTIGE}"], [Configuration::getRankName($event->getPlayer()), Prisons::get()->getAscension($event->getPlayer())]));
     }
 
 
