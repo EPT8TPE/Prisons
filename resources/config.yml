@@ -141,3 +141,19 @@ ascensions:
     price: 50000000
     added-permissions: []
     removed-permissions: []
+    
+no-perms: "§cYou do not have permission to use that command!"
+
+max-rank: "§cYou are at the max rank, please ascend!"
+
+ranked-up: "§aSuccessfully ranked up to §b{RANK} §a!"
+
+not-enough-money-rankup: "§aYou require §b${NEEDED} §ain order to rank up!"
+
+not-rank-z: "§cYou must be rank Z in order to ascend, you are rank §b{RANK}§a!"
+
+max-ascension-level: "§cYou are already at the max ascension level!"
+
+successfully-ascended: "§aSuccessfully ascended to ascension level §b{ASCENSION}§a!"
+
+not-enough-money-ascension: "§cYou require §b{NEEDED} §a in order to ascend to the next ascension level!"
