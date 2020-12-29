@@ -27,7 +27,7 @@ class SQLite3 {
 
             $cfg = new Config(Prisons::get()->getDataFolder() . "playerlist.yml", Config::YAML);
 
-            foreach ($cfg->get("players") as $player) {
+            foreach ($cfg->get((array)"players") as $player) {
                 $query = $this->db->query("SELECT * FROM players WHERE username ='{$player}';");
                 $fa = $query->fetchArray(SQLITE3_NUM);
                 $this->playerData[strtolower($fa[0])] = ["username" => $fa[0],
