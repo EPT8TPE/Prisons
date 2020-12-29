@@ -21,7 +21,7 @@ class RankUpCommand extends Command {
     public function __construct() {
         parent::__construct("rankup", "Rankup to the next rank.", TextFormat::RED . "Usage: /rankup", ["ru"]);
         $this->setPermission("prisons.rankup");
-        $this->messages = new Config(Prisons::get()->getDataFolder() . "messages.yml");
+        $this->messages = Prisons::get()->getConfig();
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
