@@ -30,7 +30,6 @@ class Prisons extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
         $this->getServer()->getCommandMap()->register("Prisons", new AscendCommand());
-        $this->getServer()->getCommandMap()->register("Prisons", new ResetCommand());
 
         self::$provider = new SQLite3();
         self::$provider->initDb();
