@@ -34,6 +34,18 @@ class Prisons extends PluginBase {
         self::$provider = new SQLite3();
         self::$provider->initDb();
         self::$configuration = new Configuration();
+        
+        $this->saveResource("messages.yml");
+        $this->saveResource("playerlist.yml");
+    }
+    
+    public function onDisable() : void {
+        if(isset(self::$provider)) {
+            self::$provider->closeDb();
+        }
+        
+        $this->saveResource("messages.yml");
+        $this->saveResource("playerlist.yml");
     }
 
     public function checkUpdate() : void {
