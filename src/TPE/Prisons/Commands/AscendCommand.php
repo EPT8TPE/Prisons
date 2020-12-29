@@ -53,7 +53,7 @@ class AscendCommand extends Command {
             $sender->sendMessage($this->messages->get("max-ascension-level"));
         }
 
-        if($data = Prisons::get()->getConfig()->get("ascensions." . $nextAscensionLevel)) {
+        if($data = Prisons::get()->getConfig()->getNested("ascensions." . $nextAscensionLevel)) {
             $money = EconomyAPI::getInstance()->myMoney($sender);
 
             if($money >= $data["price"]) {
