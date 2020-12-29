@@ -56,7 +56,7 @@ class RankUpCommand extends Command {
                 EconomyAPI::getInstance()->reduceMoney($sender, $data["price"]);
                 Prisons::get()->setRank($sender->getName(), $nextRank);
 
-                $currentRank = Prisons::get()->getRank($sender->getName());
+                $currentRank = Configuration::getRankName($sender->getName());
 
                 $sender->sendMessage(str_replace("{RANK}", $currentRank, $this->messages->get("ranked-up")));
 
