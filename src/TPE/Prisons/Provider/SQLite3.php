@@ -25,7 +25,7 @@ class SQLite3 {
                 Prisons::get()->getServer()->getPluginManager()->disablePlugin(Prisons::get());
             }
 
-            $cfg = new Config(Prisons::get()->getDataFolder() . "playerlist.yml", Config::YAML);
+            $cfg = new Config(Prisons::get()->getDataFolder() . "playerlist.yml", Config::YAML, ["players" => []]);
 
             foreach ($cfg->get("players") as $player) {
                 $query = $this->db->query("SELECT * FROM players WHERE username ='{$player}';");
