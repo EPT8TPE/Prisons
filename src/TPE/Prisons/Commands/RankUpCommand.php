@@ -44,7 +44,7 @@ class RankUpCommand extends Command {
             return false;
         }
 
-        if($data = Prisons::get()->getConfig()->get("ranks." . $nextRank)) {
+        if($data = Prisons::get()->getConfig()->getNested("ranks." . $nextRank)) {
             $money = EconomyAPI::getInstance()->myMoney($sender);
             $ascensionLevel = Prisons::get()->getAscension($sender->getName());
 
