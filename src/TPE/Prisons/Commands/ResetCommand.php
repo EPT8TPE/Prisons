@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TPE\Prisons\Commands;
 
-
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
@@ -32,7 +31,8 @@ class ResetCommand extends Command {
             $player->kick(strval("Prison database resetting..."));
         }
 
-        unlink("prisons.db");
+        $file = mkdir(Prisons::get()->getDataFolder() . "prisons.db");
+        unlink($file);
         Prisons::get()->getServer()->shutdown();
 
         return true;
