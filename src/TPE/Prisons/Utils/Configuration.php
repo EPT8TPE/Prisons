@@ -15,7 +15,7 @@ class Configuration {
     }
 
     public static function getRankName(string $player) : string {
-        return self::getConfig()->getNested("ranks." . Prisons::getRank($player) . ".rankName");
+        return self::getConfig()->getNested("ranks." . Prisons::get()->getRank($player) . ".rankName");
     }
 
 }
