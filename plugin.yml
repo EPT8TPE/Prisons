@@ -6,6 +6,8 @@ main: TPE\Prisons\Prisons
 depend:
   - EconomyAPI
   - PurePerms
+softdepend:
+  - PureChat
 
 permissions:
   prisons.*:
@@ -18,6 +20,4 @@ permissions:
       prisons.ascend:
         default: true
         description: Allows players to use /ascend.
-      prisons.reset:
-        default: op
-        description: Allows players to use /reset.
+     
