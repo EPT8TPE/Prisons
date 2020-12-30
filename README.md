@@ -2,7 +2,7 @@
 A pocketmine plugin implementing the legacy prison rank up system in addition to a form of prestiging.
 
 # How to install
-1. Download the phar from [here]().
+1. Download the phar from [here](https://poggit.pmmp.io/ci/TPEimperialPE/Prisons/Prisons/dev:31).
 2. Add it to your servers 'plugins' directory.
 3. Restart your server.
 
