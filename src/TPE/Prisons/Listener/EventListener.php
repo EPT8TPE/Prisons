@@ -30,7 +30,13 @@ class EventListener implements Listener {
             $cfg->save();
         }
     }
-
+    
+    
+    /**
+    * @param PlayerChatEvent $event
+    * @priority HIGHEST
+    * @ignoreCancelled true
+    */
     public function onChat(PlayerChatEvent $event) {
         $format = str_replace(["{PRISON_RANK}", "{PRISON_ASCENSION}"], [Configuration::getRankName($event->getPlayer()->getName()), Prisons::get()->getAscension($event->getPlayer()->getName())], $event->getFormat());
         $event->setFormat($format);
