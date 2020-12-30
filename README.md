@@ -56,6 +56,15 @@ the plugin will not work.
 - [PureChat](https://poggit.pmmp.io/p/PureChat/1.4.11) is required only if you wish to implement the 'chat format' feature 
 that comes with this plugin.
 
+# API
+
+The following functions can be used by developers in the following way, what the functions do is fairly self explanatory:
+
+    Prisons::get()->getRank(string $name);
+    Prisons::get()->getAscension(string $name);
+    Prisons::get()->setRank(string $name, string $rank);
+    Prisons::get()->setAscension(string $name, int $ascensionLevel);
+
 # Support
 
 If you require any help or assistance, are recieving any errors or have an idea/suggestion, message me on discord TPE#1061.
