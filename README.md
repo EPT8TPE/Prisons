@@ -1,6 +1,4 @@
-<a href="https://poggit.pmmp.io/p/Prisons"><img src="https://poggit.pmmp.io/shield.dl.total/Prisons"></a>
-
-<a href="https://poggit.pmmp.io/p/Prisons"><img src="https://poggit.pmmp.io/shield.state/Prisons"></a>
+<a href="https://poggit.pmmp.io/p/Prisons"><img src="https://poggit.pmmp.io/shield.dl.total/Prisons"></a> <a href="https://poggit.pmmp.io/p/Prisons"><img src="https://poggit.pmmp.io/shield.state/Prisons"></a>
 
 # Prisons
 A pocketmine plugin implementing the legacy prison rank up system in addition to a form of prestiging.
