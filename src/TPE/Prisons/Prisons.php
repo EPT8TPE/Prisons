@@ -11,6 +11,7 @@ use TPE\Prisons\Commands\ResetCommand;
 use TPE\Prisons\Listener\EventListener;
 use TPE\Prisons\Provider\SQLite3;
 use TPE\Prisons\Utils\Configuration;
+use falkirks\minereset\Mine;
 
 class Prisons extends PluginBase {
 
