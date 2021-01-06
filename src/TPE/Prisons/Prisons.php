@@ -12,6 +12,7 @@ use TPE\Prisons\Listener\EventListener;
 use TPE\Prisons\Provider\SQLite3;
 use TPE\Prisons\Utils\Configuration;
 use falkirks\minereset\Mine;
+use pocketmine\block\Block;
 
 class Prisons extends PluginBase {
 
