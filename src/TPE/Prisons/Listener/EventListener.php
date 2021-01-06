@@ -7,6 +7,8 @@ namespace TPE\Prisons\Listener;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\block\BlockPlaceEvent;
 use TPE\Prisons\Prisons;
 use pocketmine\event\player\PlayerChatEvent;
 use TPE\Prisons\Utils\Configuration;
