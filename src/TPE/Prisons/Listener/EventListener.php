@@ -41,4 +41,23 @@ class EventListener implements Listener {
         $format = str_replace(["{PRISON_RANK}", "{PRISON_ASCENSION}"], [Configuration::getRankName($event->getPlayer()->getName()), Prisons::get()->getAscension($event->getPlayer()->getName())], $event->getFormat());
         $event->setFormat($format);
     }
+    
+    public function onBreak(BlockBreakEvent $event) {
+        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("no-mine-bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
+            return;
+        } else {
+            $event->setCancelled(true);
+            $event->getPlayer()->sendMessage(Prisons::get()->getConfig()->get("no-breaking-here"));
+        }
+    }
+    
+    public function onPlace(BlockPlaceEvent $event) {
+        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("no-mine-bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
+            return;
+        } else {
+            $event->setCancelled(true);
+            $event->getPlayer()->sendMessage(Prisons::get()->getConfig()->get("no-placing-here"));
+        }
+    }
+    
 }
