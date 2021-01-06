@@ -129,6 +129,12 @@ world-name: ""
 
 plot-world: "plots"
 
+# Message sent to player if they attempt to mine but are not in plot world or are in a mine or have a specific permission
+no-placing-here: "§cYou can not place blocks here!"
+
+# Message sent to player if they attempt to place blocks but are not in plot world, in a mine or have a specific permission.
+no-breaking-here: "§cYou can not break blocks here!"
+
 # Set out removed-permissions in the same way as added-permissions.
 
 # Regardless of what 'price' is, if the player has enough their money is reset to 0 to avoid exploits.
