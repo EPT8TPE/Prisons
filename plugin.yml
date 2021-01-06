@@ -21,4 +21,7 @@ permissions:
       prisons.ascend:
         default: true
         description: Allows players to use /ascend.
+      prisons.nomine.bypass:
+        default: op
+        description: Allows players to mine/place blocks in areas that are not mine areas.  
      
