@@ -124,6 +124,11 @@ ascension-multiplier: 1.25
 
 world-name: ""
 
+# The name of the worlds plots are in, this is so players can actually place and break blocks in the plot world
+# If you don't have a plot world then just put anything.
+
+plot-world: "plots"
+
 # Set out removed-permissions in the same way as added-permissions.
 
 # Regardless of what 'price' is, if the player has enough their money is reset to 0 to avoid exploits.
