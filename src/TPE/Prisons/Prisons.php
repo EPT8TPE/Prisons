@@ -17,6 +17,9 @@ class Prisons extends PluginBase {
     private static $instance;
 
     private static $provider;
+    
+    /** @var \falkirks\minereset\MineReset */
+    private $mineReset;
 
     public function onLoad() {
         self::$instance = $this;
@@ -28,6 +31,8 @@ class Prisons extends PluginBase {
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
         $this->getServer()->getCommandMap()->register("Prisons", new AscendCommand());
+        
+        $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
 
         self::$provider = new SQLite3();
         self::$provider->initDb();
@@ -74,6 +79,16 @@ class Prisons extends PluginBase {
 
     public function setAscension(string $player, int $ascension) : void {
         self::getProvider()->setPlayerData($player, "ascension", $ascension);
+    }
+    
+    public function isInMine(Block $block) : bool {
+        foreach ($this->mineReset->getMineManager() as $mine) {
+            /** @var Mine $mine */
+            if($mine->isPointInside($block)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
