@@ -6,6 +6,7 @@ main: TPE\Prisons\Prisons
 depend:
   - EconomyAPI
   - PurePerms
+  - MineReset
 softdepend:
   - PureChat
 
