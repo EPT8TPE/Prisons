@@ -45,7 +45,7 @@ class EventListener implements Listener {
     }
     
     public function onBreak(BlockBreakEvent $event) {
-        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("no-mine-bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
+        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("prisons.nomine.bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
             return;
         } else {
             $event->setCancelled(true);
@@ -54,7 +54,7 @@ class EventListener implements Listener {
     }
     
     public function onPlace(BlockPlaceEvent $event) {
-        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("no-mine-bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
+        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->hasPermission("prisons.nomine.bypass") || $event->getPlayer()->getLevel()->getName() === Prisons::get()->getConfig()->get("plot-world")) {
             return;
         } else {
             $event->setCancelled(true);
