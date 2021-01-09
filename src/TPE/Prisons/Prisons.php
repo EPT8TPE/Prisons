@@ -51,7 +51,7 @@ class Prisons extends PluginBase {
     }
 
     public function checkUpdate() : void {
-        if($this->getConfig()->get("version") !== 1) {
+        if($this->getConfig()->get("version") !== 1.1) {
             $this->getLogger()->notice("Your configuration file is outdated, updating...");
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
             $this->saveDefaultConfig();
