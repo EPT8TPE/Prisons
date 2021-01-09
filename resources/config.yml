@@ -2,7 +2,7 @@
 
 # Version, do not change.
 
-version: 1
+version: 1.1
 
 # Ranks for prisons, do not alter the lowercase letters, you can modify the rankName,
 # rank price and added-permissions, set out the added-permissions as follows:
