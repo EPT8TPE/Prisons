@@ -73,7 +73,7 @@ plugin will not work.
 - [PureChat](https://poggit.pmmp.io/p/PureChat/1.4.11) is required only if you wish to implement the 'chat format' feature 
 that comes with this plugin.
 
-- [ScoreHud])(https://poggit.pmmp.io/p/ScoreHud/5.2.0) is required only if you wish to use prison's scorehud feature.
+- [ScoreHud](https://poggit.pmmp.io/p/ScoreHud/5.2.0) is required only if you wish to use prison's scorehud feature.
 
 # Chat Format & ScoreHud
 
