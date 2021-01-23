@@ -19,8 +19,8 @@ class AscendCommand extends Command {
     private $messages;
 
     public function __construct() {
-        parent::__construct("ascend", "Ascend to the next ascension level, resetting your prisons rank and money to 0.", TextFormat::RED . "Usage: /ascend");
-        $this->setPermission("prisons.ascend");
+        parent::__construct("prestige", "Prestiging resets your prisons rank and money to 0.", TextFormat::RED . "Usage: /prestige");
+        $this->setPermission("prisons.prestige");
         $this->messages = Prisons::get()->getConfig();
     }
 
