@@ -32,7 +32,10 @@ class Prisons extends PluginBase {
 
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
-        $this->getServer()->getCommandMap()->register("Prisons", new AscendCommand());
+        
+        if($this->getConfig()->get("prestige") === true) {
+            etServer()->getCommandMap()->register("Prisons", new AscendCommand());
+        }
         
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
 
@@ -51,7 +54,7 @@ class Prisons extends PluginBase {
     }
 
     public function checkUpdate() : void {
-        if($this->getConfig()->get("version") !== 1.1) {
+        if($this->getConfig()->get("version") !== 1.2) {
             $this->getLogger()->notice("Your configuration file is outdated, updating...");
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
             $this->saveDefaultConfig();
