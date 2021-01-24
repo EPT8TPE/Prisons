@@ -49,7 +49,7 @@ class PrestigeCommand extends Command {
         $nextPrestigeLevel = $prestigeLevel;
         $nextPrestigeLevel++;
 
-        if($nextAscensionLevel > (int) array_key_last(Prisons::get()->getConfig()->get("prestiges"))) {
+        if($nextPrestigeLevel > (int) array_key_last(Prisons::get()->getConfig()->get("prestiges"))) {
             $sender->sendMessage($this->messages->get("max-prestige-level"));
         }
 
