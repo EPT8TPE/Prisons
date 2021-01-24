@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace TPE\Prisons;
 
 use pocketmine\plugin\PluginBase;
-use TPE\Prisons\Commands\AscendCommand;
+use TPE\Prisons\Commands\PrestigeCommand;
 use TPE\Prisons\Commands\RankUpCommand;
 use TPE\Prisons\Commands\ResetCommand;
 use TPE\Prisons\Listener\EventListener;
@@ -34,7 +34,7 @@ class Prisons extends PluginBase {
         $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
         
         if($this->getConfig()->get("prestige") === true) {
-            etServer()->getCommandMap()->register("Prisons", new AscendCommand());
+            etServer()->getCommandMap()->register("Prisons", new PrestigeCommand());
         }
         
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
