@@ -34,7 +34,7 @@ class Prisons extends PluginBase {
         $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
         
         if($this->getConfig()->get("prestige") === true) {
-            etServer()->getCommandMap()->register("Prisons", new PrestigeCommand());
+            $this->getServer()->getCommandMap()->register("Prisons", new PrestigeCommand());
         }
         
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
