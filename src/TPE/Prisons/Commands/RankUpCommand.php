@@ -46,11 +46,11 @@ class RankUpCommand extends Command {
 
         if($data = Prisons::get()->getConfig()->getNested("ranks." . $nextRank)) {
             $money = EconomyAPI::getInstance()->myMoney($sender);
-            $ascensionLevel = Prisons::get()->getAscension($sender->getName());
+            $prestigeLevel = Prisons::get()->getPrestige($sender->getName());
 
-            if($ascensionLevel === 0) $ascensionLevel = 1;
+            if($prestigeLevel === 0) $prestigeLevel = 1;
 
-            $data["price"] *= $ascensionLevel * Prisons::get()->getConfig()->get("ascension-multiplier");
+            $data["price"] *= $prestigeLevel * Prisons::get()->getConfig()->get("prestige-multiplier");
 
             if($money >= $data["price"]) {
                 EconomyAPI::getInstance()->reduceMoney($sender, $data["price"]);
@@ -65,6 +65,10 @@ class RankUpCommand extends Command {
                 if($pp instanceof PurePerms) {
                     foreach ($data["added-permissions"] as $permission) {
                         $pp->getUserDataMgr()->setPermission($sender, $permission);
+                    }
+                    
+                    foreach($data["removed-permissions") as $permission] {
+                        $pp->getUserDataMgr()->unsetPermission($sender, $permission);
                     }
                 }
 
