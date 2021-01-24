@@ -67,7 +67,7 @@ class RankUpCommand extends Command {
                         $pp->getUserDataMgr()->setPermission($sender, $permission);
                     }
                     
-                    foreach($data["removed-permissions") as $permission] {
+                    foreach($data["removed-permissions") as $permission) {
                         $pp->getUserDataMgr()->unsetPermission($sender, $permission);
                     }
                 }
