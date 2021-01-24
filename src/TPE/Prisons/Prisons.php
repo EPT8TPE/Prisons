@@ -74,7 +74,7 @@ class Prisons extends PluginBase {
         return self::getProvider()->getPlayerData($player, "rank");
     }
 
-    public function getAscension(string $player) : int {
+    public function getPrestige(string $player) : int {
         return self::getProvider()->getPlayerData($player, "ascension");
     }
 
@@ -82,7 +82,7 @@ class Prisons extends PluginBase {
         self::getProvider()->setPlayerData($player, "rank", $rank);
     }
 
-    public function setAscension(string $player, int $ascension) : void {
+    public function setPrestige(string $player, int $ascension) : void {
         self::getProvider()->setPlayerData($player, "ascension", $ascension);
     }
     
