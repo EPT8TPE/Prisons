@@ -82,8 +82,8 @@ class Prisons extends PluginBase {
         self::getProvider()->setPlayerData($player, "rank", $rank);
     }
 
-    public function setPrestige(string $player, int $ascension) : void {
-        self::getProvider()->setPlayerData($player, "ascension", $ascension);
+    public function setPrestige(string $player, int $prestigeLevel) : void {
+        self::getProvider()->setPlayerData($player, "ascension", $prestigeLevel);
     }
     
     public function isInMine(Block $block) : bool {
