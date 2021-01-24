@@ -14,7 +14,7 @@ use pocketmine\utils\Config;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils\Configuration;
 
-class AscendCommand extends Command {
+class PrestigeCommand extends Command {
 
     private $messages;
 
@@ -44,26 +44,26 @@ class AscendCommand extends Command {
             return false;
         }
 
-        $ascensionLevel = Prisons::get()->getAscension($sender->getName());
+        $prestigeLevel = Prisons::get()->getAscension($sender->getName());
 
-        $nextAscensionLevel = $ascensionLevel;
-        $nextAscensionLevel++;
+        $nextPrestigeLevel = $prestigeLevel;
+        $nextPrestigeLevel++;
 
-        if($nextAscensionLevel > (int) array_key_last(Prisons::get()->getConfig()->get("ascensions"))) {
-            $sender->sendMessage($this->messages->get("max-ascension-level"));
+        if($nextAscensionLevel > (int) array_key_last(Prisons::get()->getConfig()->get("prestiges"))) {
+            $sender->sendMessage($this->messages->get("max-prestige-level"));
         }
 
-        if($data = Prisons::get()->getConfig()->getNested("ascensions." . $nextAscensionLevel)) {
+        if($data = Prisons::get()->getConfig()->getNested("prestiges." . $nextPrestigeLevel)) {
             $money = EconomyAPI::getInstance()->myMoney($sender);
 
             if($money >= $data["price"]) {
                 EconomyAPI::getInstance()->setMoney($sender, 0);
-                Prisons::get()->setAscension($sender->getName(), $nextAscensionLevel);
+                Prisons::get()->setPrestige($sender->getName(), $nextPrestigeLevel);
                 Prisons::get()->setRank($sender->getName(), "a");
 
-                $currentAscensionLevel = Prisons::get()->getAscension($sender->getName());
+                $currentPrestigeLevel = Prisons::get()->getPrestige($sender->getName());
 
-                $sender->sendMessage(str_replace("{ASCENSION}", $currentAscensionLevel, $this->messages->get("successfully-ascended")));
+                $sender->sendMessage(str_replace("{PRESTIGE}", $currentPrestigeLevel, $this->messages->get("successfully-prestiged")));
 
                 if(empty(Prisons::get()->getConfig()->get("world-name"))) {
                     $sender->teleport(Prisons::get()->getServer()->getDefaultLevel()->getSpawnLocation());
@@ -84,7 +84,7 @@ class AscendCommand extends Command {
                 }
 
             } else {
-                $sender->sendMessage(str_replace("{NEEDED}", $data["price"], $this->messages->get("not-enough-money-ascension")));
+                $sender->sendMessage(str_replace("{NEEDED}", $data["price"], $this->messages->get("not-enough-money-prestige")));
             }
 
         } else {
