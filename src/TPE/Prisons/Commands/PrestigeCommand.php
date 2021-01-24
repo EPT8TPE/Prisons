@@ -44,7 +44,7 @@ class PrestigeCommand extends Command {
             return false;
         }
 
-        $prestigeLevel = Prisons::get()->getAscension($sender->getName());
+        $prestigeLevel = Prisons::get()->getPrestige($sender->getName());
 
         $nextPrestigeLevel = $prestigeLevel;
         $nextPrestigeLevel++;
