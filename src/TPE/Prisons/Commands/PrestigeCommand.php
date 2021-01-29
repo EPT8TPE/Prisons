@@ -13,8 +13,9 @@ use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils\Configuration;
+use pocketmine\command\PluginIdentifiableCommand;
 
-class PrestigeCommand extends Command {
+class PrestigeCommand extends Command implements PluginIdentifiableCommand {
 
     private $messages;
 
@@ -91,9 +92,11 @@ class PrestigeCommand extends Command {
             $sender->sendMessage(TextFormat::RED . "Configuration error!");
             Prisons::get()->getLogger()->critical("Configuration error detected, fix immediately or reset your config file!");
         }
-
         return true;
     }
-
-
+    
+    public function getPlugin() : Plugin {
+        return Prisons::get();
+    }
+  
 }
