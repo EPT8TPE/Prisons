@@ -11,6 +11,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
+use pocketmine\plugin\Plugin;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils\Configuration;
 use pocketmine\command\PluginIdentifiableCommand;
