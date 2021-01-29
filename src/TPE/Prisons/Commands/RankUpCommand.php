@@ -10,11 +10,13 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\utils\Config;
+use pocketmine\plugin\Plugin;
 use TPE\Prisons\Prisons;
 use pocketmine\utils\TextFormat;
 use TPE\Prisons\Utils\Configuration;
+use pocketmine\command\PluginIdentifiableCommand;
 
-class RankUpCommand extends Command {
+class RankUpCommand extends Command implements PluginIdentifiableCommand {
 
     private $messages;
 
@@ -82,6 +84,10 @@ class RankUpCommand extends Command {
         }
 
         return true;
+    }
+    
+    public function getPlugin() : Plugin {
+        return Prisons::get();
     }
 
 }
