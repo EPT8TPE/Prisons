@@ -191,7 +191,7 @@ ranked-up: "§aSuccessfully ranked up to §b{RANK}§a!"
 
 not-enough-money-rankup: "§aYou require §b${NEEDED} §ain order to rank up!"
 
-not-rank-z: "§cYou must be rank Z in order to prestige, you are rank §b{RANK}§a!"
+not-rank-z: "§cYou must be rank Z in order to prestige, you are rank §b{RANK}§c!"
 
 max-prestige-level: "§cYou are already at the max prestige level!"
 
