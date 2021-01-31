@@ -1,5 +1,5 @@
 name: Prisons
-version: 1.2.0
+version: 1.2.1
 api: 3.0.0
 author: TPE
 main: TPE\Prisons\Prisons
