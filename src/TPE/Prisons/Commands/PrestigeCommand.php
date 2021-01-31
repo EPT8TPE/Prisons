@@ -73,7 +73,7 @@ class PrestigeCommand extends Command implements PluginIdentifiableCommand {
                     $sender->teleport(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")));
                 }
 
-                $pp = Prisons::get()->getConfig()->get("PurePerms");
+                $pp = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
 
                 if($pp instanceof PurePerms) {
                     foreach ($data["added-permissions"] as $permission) {
