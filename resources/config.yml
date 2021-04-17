@@ -1,0 +1,246 @@
+# Configuration file for Prisons by TPE.
+
+# Version, do not change.
+
+version: 2.0
+
+# Enable usage of the prestige command by setting this to true, 
+# if you wish to disable prestiging set it to false.
+prestige: true
+
+# Permission manager for prisons, must be either 'pureperms' or
+# 'hierarchy', if you do not specify one of the two then it will
+# be automatically assigned.
+permission-manager: pureperms
+
+database:
+  # The database type. "sqlite" and "mysql" are supported.
+  type: sqlite
+
+  # Edit these settings only if you choose "sqlite".
+  sqlite:
+    # The file name of the database in the plugin data folder.
+    # You can also put an absolute path here.
+    file: sqlite.sql
+  # Edit these settings only if you choose "mysql".
+  mysql:
+    host: 127.0.0.1
+    # Avoid using the "root" user for security reasons.
+    username: root
+    password: ""
+    schema: prisons
+  # The maximum number of simultaneous SQL queries
+  # Recommended: 1 for sqlite, 2 for MySQL. You may want to further increase this value if your MySQL connection is very slow.
+  worker-limit: 1
+
+# Ranks for prisons, do not alter the lowercase letters, you can modify the rankName,
+# rank price and added-permissions, set out the added-permissions as follows:
+# added-permissions:
+#  - "test.permission"
+#  - "test2.permission"
+
+ranks:
+  a:
+    price: 1000
+    rankName: "A"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  b:
+    price: 2500
+    rankName: "B"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  c:
+    price: 5000
+    rankName: "C"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  d:
+    price: 10000
+    rankName: "D"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  e:
+    price: 20000
+    rankName: "E"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  f:
+    price: 50000
+    rankName: "F"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  g:
+    price: 100000
+    rankName: "G"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  h:
+    price: 175000
+    rankName: "H"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  i:
+    price: 300000
+    rankName: "I"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  j:
+    price: 450000
+    rankName: "J"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  k:
+    price: 650000
+    rankName: "K"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  l:
+    price: 900000
+    rankName: "L"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  m:
+    price: 1200000
+    rankName: "M"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  n:
+    price: 1550000
+    rankName: "N"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  o:
+    price: 1900000
+    rankName: "O"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  p:
+    price: 2500000
+    rankName: "P"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  q:
+    price: 3150000
+    rankName: "Q"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  r:
+    price: 3700000
+    rankName: "R"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  s:
+    price: 4400000
+    rankName: "S"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  t:
+    price: 5150000
+    rankName: "T"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  u:
+    price: 5900000
+    rankName: "U"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  v:
+    price: 6900000
+    rankName: "V"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  w:
+    price: 7000000
+    rankName: "W"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  x:
+    price: 8200000
+    rankName: "X"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  y:
+    price: 9300000
+    rankName: "Y"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  z:
+    price: 11000000
+    rankName: "Z"
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+
+# Prestiging resets the prison rank of a player, the rank up prices are then multiplied by the following number:
+
+prestige-multiplier: 1.25
+
+# Name the world players are teleported to after ascending, leave empty for default world.
+
+world-name: ""
+
+# The name of the worlds plots are in, this is so players can actually place and break blocks in the plot world
+# If you don't have a plot world then just put anything.
+
+plot-world: "plots"
+
+# Set out removed-permissions in the same way as added-permissions.
+# Regardless of what 'price' is, if the player has enough their money is reset to 0 to avoid exploits.
+
+prestiges:
+  1:
+    price: 15000000
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  2:
+    price: 25000000
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+  3:
+    price: 50000000
+    added-permissions: []
+    removed-permissions: []
+    commands: []
+
+messages:
+  no-perms: "§cYou do not have permission to use that command!"
+  max-rank: "§cYou are at the max rank, please prestige!"
+  ranked-up: "§aSuccessfully ranked up to §b{RANK}§a!"
+  not-enough-money-rankup: "§aYou require §b${NEEDED} §ain order to rank up!"
+  not-rank-z: "§cYou must be rank Z in order to prestige, you are rank §b{RANK}§c!"
+  max-prestige-level: "§cYou are already at the max prestige level!"
+  successfully-prestiged: "§aSuccessfully prestiged to prestige level §b{PRESTIGE}§a!"
+  not-enough-money-prestige: "§cYou require §b${NEEDED} §ain order to prestige to the next prestige level!"
+  must-be-player: "§cYou must be a player in order to use that command!"
+  rankup-usage: "§cUsage: /rankup"
+  no-breaking-here: "§cYou can not break blocks here!"
+  no-placing-here: "§cYou can not place blocks here!"
+  prestige-usage: "§cUsage: /prestige"

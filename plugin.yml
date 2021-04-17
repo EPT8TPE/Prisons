@@ -1,0 +1,31 @@
+name: Prisons
+version: 2.0.0
+api: 3.0.0
+author: TPE
+main: TPE\Prisons\Prisons
+depend:
+  - EconomyAPI
+  - MineReset
+softdepend:
+  - PureChat
+  - ScoreHud
+  - PurePerms
+  - Hierarchy
+  - PureChat
+  - HRKChat
+
+permissions:
+  prisons.*:
+    default: op
+    description: Allows access to all prison commands.
+    children:
+      prisons.rankup:
+        default: true
+        description: Allows user to use /rankup.
+      prisons.prestige:
+        default: true
+        description: Allows players to use /prestige.
+      prisons.nomine.bypass:
+        default: op
+        description: Allows players to mine/place blocks in areas that are not mine areas.  
+     
