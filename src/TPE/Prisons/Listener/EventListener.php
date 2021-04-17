@@ -13,7 +13,6 @@ use TPE\Prisons\Data\BaseDB;
 use TPE\Prisons\Prisons;
 use pocketmine\event\player\PlayerPreLoginEvent;
 use TPE\Prisons\Utils;
-use CortexPE\HRKChat\event\PlaceholderResolveEvent;
 
 final class EventListener implements Listener {
 
@@ -83,33 +82,4 @@ final class EventListener implements Listener {
             });
         }
     }
-
-    /**
-     * @param PlaceholderResolveEvent $event
-     * @return void
-     *
-     * @priority LOWEST
-     */
-    public function onPlaceHolderResolve(PlaceholderResolveEvent $event) : void {
-        if($event->getPlaceholderName() === "prisons.player.rank") {
-            Prisons::get()->getPrisonRank($event->getMember()->getPlayer(), function (array $rows) use($event) {
-                foreach ($rows as $row) {
-                    $currentRank = $row[0]['prisonrank'];
-                }
-
-                $event->setValue((string)$currentRank);
-            });
-        }
-
-        if($event->getPlaceholderName() === "prisons.player.prestige") {
-            Prisons::get()->getPrisonRank($event->getMember()->getPlayer(), function (array $rows) use($event) {
-                foreach ($rows as $row) {
-                    $currentPrestige = $rows[0]['prestige'];
-                }
-
-                $event->setValue((string)$currentPrestige);
-            });
-        }
-    }
-
 }
