@@ -77,7 +77,7 @@ final class EventListener implements Listener {
                         $currentPrestige = $row[0]['prestige'];
                     }
 
-                    $event->setFormat($format = str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($currentRank), $currentPrestige], $event->getFormat()));
+                    $event->setFormat(str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($currentRank), $currentPrestige], $event->getFormat()));
                 });
             });
         }
