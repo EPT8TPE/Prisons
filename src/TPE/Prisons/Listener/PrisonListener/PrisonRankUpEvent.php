@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TPE\Prisons\Listener\PrisonListener;
 
-use CortexPE\Hierarchy\Hierarchy;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use TPE\Prisons\Prisons;
@@ -42,19 +41,6 @@ final class PrisonRankUpEvent extends PrisonPlayerEvent{
         }
 
         $manager = Prisons::get()->getPermissionManager();
-
-        if($manager === "hierarchy") {
-            $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("Hierarchy");
-            if($manager instanceof Hierarchy) {
-                foreach ($this->getAddedPermissions() as $permission) {
-                    $manager->getMemberFactory()->getMember($this->getPlayer())->addMemberPermission($permission);
-                }
-
-                foreach ($this->getRemovedPermissions() as $permission) {
-                    $manager->getMemberFactory()->getMember($this->getPlayer())->removeMemberPermission($permission);
-                }
-            }
-        }
 
         if($manager === "pureperms") {
             $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
