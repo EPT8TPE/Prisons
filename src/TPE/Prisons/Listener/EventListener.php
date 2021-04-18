@@ -39,8 +39,7 @@ final class EventListener implements Listener {
                 }
                 Prisons::get()->getDatabaseConnector()->executeInsert(
                 BaseDB::PRISONS_REGISTER_PLAYER,
-                ['username' => $event->getPlayer()->getLowerCaseName(), 'prisonrank' => $cr, 'prestige' => $cp];
-                );
+                ['username' => $event->getPlayer()->getLowerCaseName(), 'prisonrank' => $cr, 'prestige' => $cp]);
             });
         });
     }
