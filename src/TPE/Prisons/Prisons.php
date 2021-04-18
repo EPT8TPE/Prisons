@@ -36,24 +36,8 @@ final class Prisons extends PluginBase {
         $this->checkUpdate();
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
-
-        if($this->getConfig()->get("permission-manager") === "pureperms") {
-            $this->permissionManager = "pureperms";
-        } elseif($this->getConfig()->get("permission-manager") === "hierarchy") {
-            $this->permissionManager = "hierarchy";
-        } elseif(!is_null($this->getServer()->getPluginManager()->getPlugin("PurePerms")) && is_null($this->getServer()->getPluginManager()->getPlugin("Hierarchy"))) {
-            $this->permissionManager = "pureperms";
-            $this->getConfig()->set("permission-manager", "pureperms");
-            $this->getLogger()->info("No permission manager specified in config, automatically assigned PurePerms.");
-        } elseif(is_null($this->getServer()->getPluginManager()->getPlugin("PurePerms")) && !is_null($this->getServer()->getPluginManager()->getPlugin("Hierarchy"))) {
-            $this->permissionManager = "hierarchy";
-            $this->getConfig()->set("permission-manager", "hierarchy");
-            $this->getLogger()->info("No permission manager specified in config, automatically assigned Hierarchy");
-        } else {
-            $this->getLogger()->critical("Either you have neither hierarchy or pure perms installed or you have both installed!");
-            $this->getLogger()->critical("Please resolve this issue before using this plugin!");
-            $this->getServer()->getPluginManager()->disablePlugin($this);
-        }
+        $this->registerCommands();
+        $this->permissionManager = "pureperms";
     }
     
     public function onDisable() : void {
@@ -172,5 +156,10 @@ final class Prisons extends PluginBase {
             }
         }
         return false;
+    }
+    
+    public function registerCommands() : void {
+        $this->getServer()->getCommandMap()->register("Prisons", new RankUpCommand());
+        $this->getServer()->getCommandMap()->register("Prisons", new PrestigeCommand());
     }
 }
