@@ -43,7 +43,7 @@ final class Prisons extends PluginBase {
     }
     
     public function onDisable() : void {
-        if(isset($this->database)) $this->database->close();
+        if($this->database instanceof DataConnector) $this->database->close();
     }
 
     public function checkUpdate() : void {
