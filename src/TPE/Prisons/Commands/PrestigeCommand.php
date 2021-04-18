@@ -40,7 +40,7 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
             return;
         }
 
-        if(isset($args)) {
+        if(isset($args[0])) {
             if(!is_null(Utils::getMessage("prestige-usage"))) {
                 $sender->sendMessage(Utils::getMessage("prestige-usage"));
             } else {
