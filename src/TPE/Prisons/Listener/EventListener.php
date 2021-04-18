@@ -70,16 +70,19 @@ final class EventListener implements Listener {
         $event->setCancelled();
         if(Prisons::get()->getPermissionManager() === "pureperms") {
             Prisons::get()->getPrisonRank($event->getPlayer(), function (array $rows) use ($event) {
+                $currentRank = "";
                 foreach ($rows as $row) {
                     $currentRank = $row['prisonrank'];
                 }
 
                 Prisons::get()->getPrisonPrestige($event->getPlayer(), function (array $rows) use ($event, $currentRank) {
+                    $currentPrestige = 0;
                     foreach ($rows as $row) {
                         $currentPrestige = $row['prestige'];
                     }
 
                     $format = str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($currentRank), $currentPrestige], $event->getFormat());
+                    // Am looking for some assistance on this issue as it is not ideal. 
                     Prisons::get()->getServer()->broadcastMessage($format);
                 });
             });
