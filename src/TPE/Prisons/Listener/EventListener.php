@@ -64,10 +64,10 @@ final class EventListener implements Listener {
     /**
      * @param PlayerChatEvent $event
      * @priority HIGHEST
-     * @ignoreCancelled true
      * @return void
      */
     public function onChat(PlayerChatEvent $event): void {
+        $event->setCancelled();
         if(Prisons::get()->getPermissionManager() === "pureperms") {
             Prisons::get()->getPrisonRank($event->getPlayer(), function (array $rows) use ($event) {
                 foreach ($rows as $row) {
@@ -79,7 +79,8 @@ final class EventListener implements Listener {
                         $currentPrestige = $row['prestige'];
                     }
 
-                    $event->setFormat(str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($currentRank), $currentPrestige], $event->getFormat()));
+                    $format = str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($currentRank), $currentPrestige], $event->getFormat());
+                    Prisons::get()->getServer()->broadcastMessage($format);
                 });
             });
         }
