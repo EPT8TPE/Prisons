@@ -22,26 +22,26 @@ final class EventListener implements Listener {
      */
     public function onPlayerLogin(PlayerPreLoginEvent $event) : void {
         Prisons::get()->getPrisonRank($event->getPlayer(), function(array $rows) use($event) {
-            $cr = "";
+            $dr = [];
             foreach($rows as $row) {
                 if(isset($row['prisonrank'])) {
-                    $cr = $row['prisonrank'];
+                    $dr[] = $row['prisonrank'];
                 } else {
-                    $cr = "a";
+                    $dr[] = "a";
                 }
             }
-            Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event, $cr) {
-                $cp = 0;
+            Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event, $dr) {
+                $dp = [];
                 foreach($rows as $row) {
                     if(isset($row['prestige'])) {
-                        $cp = $row['prestige'];
+                        $dp[] = $row['prestige'];
                     } else {
-                        $cp = 0;
+                        $dp[] = 0;
                     }
                 }
                 Prisons::get()->getDatabaseConnector()->executeInsert(
                 BaseDB::PRISONS_REGISTER_PLAYER,
-                ['username' => $event->getPlayer()->getLowerCaseName(), 'prisonrank' => $cr, 'prestige' => $cp]);
+                ['username' => $event->getPlayer()->getLowerCaseName(), 'prisonrank' => $dr[0], 'prestige' => $dp[0]]);
             });
         });
     }
