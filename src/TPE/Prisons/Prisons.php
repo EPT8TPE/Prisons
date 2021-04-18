@@ -110,7 +110,7 @@ final class Prisons extends PluginBase {
      * Set the prison rank of a specified player.
      */
     public function setPrisonRank(Player $player, string $rank) : void {
-        $this->getDatabaseConnector()->executeInsert(
+        $this->getDatabaseConnector()->executeChange(
             BaseDB::UPDATE_RANK,
             ['username' => $player->getLowerCaseName(), 'prisonrank' => $rank]
         );
@@ -137,7 +137,7 @@ final class Prisons extends PluginBase {
      * Set the prison prestige level of a specified player.
      */
     public function setPrisonPrestige(Player $player, int $prestige) : void {
-        $this->getDatabaseConnector()->executeInsert(
+        $this->getDatabaseConnector()->executeChange(
             BaseDB::UPDATE_PRESTIGE,
             ["username" => $player->getLowerCaseName(), "prestige" => $prestige]
         );
