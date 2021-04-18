@@ -51,7 +51,7 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
 
         Prisons::get()->getPrisonRank($sender, function (array $rows) use($sender) {
             foreach ($rows as $row) {
-                $currentRank = $row[0]['prisonrank'];
+                $currentRank = $row['prisonrank'];
             }
 
             if($currentRank !== "z") {
@@ -65,7 +65,7 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
 
             Prisons::get()->getPrisonPrestige($sender, function (array $rows) use($sender) {
                 foreach ($rows as $row) {
-                    $currentPrestige = $rows[0]['prestige'];
+                    $currentPrestige = $rows['prestige'];
                 }
 
                 $nextPrestige = $currentPrestige;
