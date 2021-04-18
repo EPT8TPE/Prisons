@@ -12,6 +12,8 @@ use TPE\Prisons\Data\BaseDB;
 use TPE\Prisons\Listener\EventListener;
 use falkirks\minereset\Mine;
 use pocketmine\block\Block;
+use TPE\Prisons\Commands\RankUpCommand;
+use TPE\Prisons\Commands\PrestigeCommand;
 
 final class Prisons extends PluginBase {
 
