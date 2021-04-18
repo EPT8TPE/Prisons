@@ -64,19 +64,11 @@ final class Utils {
     public static function getRankPermissions(string $rank, string $type = "added") : ?array {
         switch (strtolower($type)) {
             case "added":
-                if(self::getRanks()[$rank]) {
-                    return self::getRanks()[$rank]['added-permissions'];
-                } else {
-                    return [];
-                }
+                return self::getRanks()[$rank]['added-permissions'];
             break;
 
             case "removed":
-                if(self::getRanks()[$rank]) {
-                    return self::getRanks()[$rank]['removed-permissions'];
-                } else {
-                    return [];
-                }
+                return self::getRanks()[$rank]['removed-permissions'];
             break;
 
             default:
@@ -97,19 +89,11 @@ final class Utils {
     public static function getPrestigePermissions(int $prestige, string $type = "added") : ?array {
         switch (strtolower($type)) {
             case "added":
-                if(self::getPrestiges()[$prestige]) {
-                    return self::getPrestiges()[$prestige]['added-permissions'];
-                } else {
-                    return [];
-                }
+                return self::getPrestiges()[$prestige]['added-permissions'];
             break;
 
             case "removed":
-                if(self::getPrestiges()[$prestige]) {
-                    return self::getPrestiges()[$prestige]['removed-permissions'];
-                } else {
-                    return [];
-                }
+                return self::getPrestiges()[$prestige]['removed-permissions'];
             break;
 
             default:
