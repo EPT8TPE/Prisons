@@ -40,7 +40,7 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
             return;
         }
 
-        if(isset($args)) {
+        if(isset($args[0])) {
             if(!is_null(Utils::getMessage("rankup-usage"))) {
                 $sender->sendMessage(Utils::getMessage("rankup-usage"));
             } else {
