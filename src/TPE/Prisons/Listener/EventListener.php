@@ -22,6 +22,7 @@ final class EventListener implements Listener {
      */
     public function onPlayerLogin(PlayerPreLoginEvent $event) : void {
         Prisons::get()->getPrisonRank($event->getPlayer(), function(array $rows) use($event) {
+            $cr = "";
             foreach($rows as $row) {
                 if(isset($row['prisonrank'])) {
                     $cr = $row['prisonrank'];
@@ -30,6 +31,7 @@ final class EventListener implements Listener {
                 }
             }
             Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event, $cr) {
+                $cp = 0;
                 foreach($rows as $row) {
                     if(isset($row['prestige'])) {
                         $cp = $row['prestige'];
