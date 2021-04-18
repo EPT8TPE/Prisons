@@ -52,7 +52,7 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
         Prisons::get()->getPrisonRank($sender, function (array $rows) use($sender) {
 
             foreach ($rows as $row) {
-                $currentRank = $row[0]['prisonrank'];
+                $currentRank = $row['prisonrank'];
             }
 
             $nextRank = $currentRank;
@@ -65,7 +65,7 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
 
             Prisons::get()->getPrisonPrestige($sender, function (array $rows) use($sender, $currentRank, $nextRank) {
                 foreach ($rows as $row) {
-                    $currentPrestige = $row[0]['prestige'];
+                    $currentPrestige = $row['prestige'];
                 }
 
                 $price = Utils::getRankUpPrice($currentRank, $currentPrestige);
