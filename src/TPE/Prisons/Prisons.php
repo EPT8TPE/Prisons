@@ -139,7 +139,7 @@ final class Prisons extends PluginBase {
     public function setPrisonPrestige(Player $player, int $prestige) : void {
         $this->getDatabaseConnector()->executeInsert(
             BaseDB::UPDATE_PRESTIGE,
-            ["username" => $player->getLowerCaseName()]
+            ["username" => $player->getLowerCaseName(), "prestige" => $prestige]
         );
     }
 
