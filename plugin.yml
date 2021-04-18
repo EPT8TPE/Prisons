@@ -6,13 +6,10 @@ main: TPE\Prisons\Prisons
 depend:
   - EconomyAPI
   - MineReset
-softdepend:
-  - PureChat
-  - ScoreHud
   - PurePerms
-  - Hierarchy
   - PureChat
-  - HRKChat
+softdepend:
+  - ScoreHud
 
 permissions:
   prisons.*:
