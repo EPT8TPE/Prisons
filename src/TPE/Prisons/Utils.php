@@ -62,18 +62,12 @@ final class Utils {
      * what is specified, will return null if the rank does not exist.
      */
     public static function getRankPermissions(string $rank, string $type) : ?array {
-        switch (strtolower($type)) {
-            case "added":
-                return self::getRanks()[$rank]['added-permissions'];
-            break;
-
-            case "removed":
-                return self::getRanks()[$rank]['removed-permissions'];
-            break;
-
-            default:
-                return null;
-            break;
+        if($type === "added") {
+            return self::getRanks()[$rank]['added-permissions'];
+        } elseif($type === "removed") {
+            return self::getRanks()[$rank]['removed-permissions'];
+        } else {
+            return null;
         }
     }
 
@@ -87,18 +81,12 @@ final class Utils {
      * not exist.
      */
     public static function getPrestigePermissions(int $prestige, string $type) : ?array {
-        switch (strtolower($type)) {
-            case "added":
-                return self::getPrestiges()[$prestige]['added-permissions'];
-            break;
-
-            case "removed":
-                return self::getPrestiges()[$prestige]['removed-permissions'];
-            break;
-
-            default:
-                return null;
-            break;
+        if($type === "added") {
+            return self::getPrestiges()[$prestige]['added-permissions'];
+        } elseif($type === "removed") {
+            return self::getPrestiges()[$prestige]['removed-permissions'];
+        } else {
+            return null;
         }
     }
 
