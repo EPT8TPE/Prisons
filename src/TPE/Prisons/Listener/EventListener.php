@@ -25,6 +25,26 @@ final class EventListener implements Listener {
             BaseDB::PRISONS_REGISTER_PLAYER,
             ['username' => $event->getPlayer()->getLowerCaseName()]
         );
+        Prisons::get()->getPrisonsRank($event->getPlayer(), function(array $rows) use($event) {
+            foreach($rows as $row) {
+                if(isset($row['prisonrank'])) {
+                    $cr = $row['prisonrank'];
+                } else {
+                    $cr = "a";
+                }
+                Prisons::get()->setPrisonsRank($event->getPlayer(), $cr);
+            }
+            Prisons::get()->getPrisonsPrestige($event->getPlayer, function(array $rows) use($event) {
+                foreach($rows as $row) {
+                    if(isset($row['prestige'])) {
+                        $cp = $row['prestige'];
+                    } else {
+                        $cp = 0;
+                    }
+                }
+                Prisons::get()->setPrisonsPrestige($event->getPlayer, $cp);
+            });
+        });
     }
 
     /**
