@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS prisons_players (
     username VARCHAR(32) NOT NULL,
     prisonrank VARCHAR(1) NOT NULL,
     prestige INT UNSIGNED NOT NULL,
-    PRIMARY KEY(username),
+    PRIMARY KEY(username)
 );
 -- #  }
 
@@ -28,7 +28,7 @@ INSERT OR REPLACE INTO prisons_players(
   prestige
 ) VALUES (
   :username,
-  :prisonrank
+  :prisonrank,
   :prestige
 );
 -- #    }
