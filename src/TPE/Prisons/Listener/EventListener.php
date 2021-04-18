@@ -25,18 +25,18 @@ final class EventListener implements Listener {
             $dr = [];
             foreach($rows as $row) {
                 if(isset($row['prisonrank'])) {
-                    $dr[] = $row['prisonrank'];
+                    $dr[0] = $row['prisonrank'];
                 } else {
-                    $dr[] = "a";
+                    $dr[0] = "a";
                 }
             }
             Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event, $dr) {
                 $dp = [];
                 foreach($rows as $row) {
                     if(isset($row['prestige'])) {
-                        $dp[] = $row['prestige'];
+                        $dp[0] = $row['prestige'];
                     } else {
-                        $dp[] = 0;
+                        $dp[0] = 0;
                     }
                 }
                 Prisons::get()->getDatabaseConnector()->executeInsert(
