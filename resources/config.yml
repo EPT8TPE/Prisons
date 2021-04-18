@@ -213,7 +213,12 @@ plot-world: "plots"
 # Set out removed-permissions in the same way as added-permissions.
 # Regardless of what 'price' is, if the player has enough their money is reset to 0 to avoid exploits.
 
-prestiges:
+prestiges: 
+  0:
+    price: 12500000
+    added-permissions: []
+    removed-permissions: []
+    commands: []
   1:
     price: 15000000
     added-permissions: []
