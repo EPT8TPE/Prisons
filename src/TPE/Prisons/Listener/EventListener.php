@@ -21,10 +21,6 @@ final class EventListener implements Listener {
      * @return void
      */
     public function onPlayerLogin(PlayerPreLoginEvent $event) : void {
-        Prisons::get()->getDatabaseConnector()->executeInsert(
-            BaseDB::PRISONS_REGISTER_PLAYER,
-            ['username' => $event->getPlayer()->getLowerCaseName()]
-        );
         Prisons::get()->getPrisonRank($event->getPlayer(), function(array $rows) use($event) {
             foreach($rows as $row) {
                 if(isset($row['prisonrank'])) {
@@ -32,9 +28,8 @@ final class EventListener implements Listener {
                 } else {
                     $cr = "a";
                 }
-                Prisons::get()->setPrisonRank($event->getPlayer(), $cr);
             }
-            Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event) {
+            Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event, $cr) {
                 foreach($rows as $row) {
                     if(isset($row['prestige'])) {
                         $cp = $row['prestige'];
@@ -42,7 +37,10 @@ final class EventListener implements Listener {
                         $cp = 0;
                     }
                 }
-                Prisons::get()->setPrisonPrestige($event->getPlayer, $cp);
+                Prisons::get()->getDatabaseConnector()->executeInsert(
+                BaseDB::PRISONS_REGISTER_PLAYER,
+                ['username' => $event->getPlayer()->getLowerCaseName(), 'prisonrank' => $cr, 'prestige' => $cp];
+                );
             });
         });
     }
