@@ -34,7 +34,7 @@ final class EventListener implements Listener {
                 }
                 Prisons::get()->setPrisonRank($event->getPlayer(), $cr);
             }
-            Prisons::get()->getPrisonPrestige($event->getPlayer, function(array $rows) use($event) {
+            Prisons::get()->getPrisonPrestige($event->getPlayer(), function(array $rows) use($event) {
                 foreach($rows as $row) {
                     if(isset($row['prestige'])) {
                         $cp = $row['prestige'];
