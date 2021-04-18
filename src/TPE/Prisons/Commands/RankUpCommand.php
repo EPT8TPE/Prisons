@@ -58,7 +58,7 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
             $nextRank = $currentRank;
             $nextRank++;
 
-            if($nextRank === "aa") {
+            if($nextRank == "aa") {
                 $sender->sendMessage(Utils::getMessage("max-rank"));
                 return;
             }
