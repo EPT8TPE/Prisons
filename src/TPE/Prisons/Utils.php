@@ -61,7 +61,7 @@ final class Utils {
      * Returns an array of permissions added/removed depending upon
      * what is specified, will return null if the rank does not exist.
      */
-    public static function getRankPermissions(string $rank, string $type = "added") : ?array {
+    public static function getRankPermissions(string $rank, string $type) : ?array {
         switch (strtolower($type)) {
             case "added":
                 return self::getRanks()[$rank]['added-permissions'];
@@ -86,7 +86,7 @@ final class Utils {
      * what is specified, will return null if the prestige level does
      * not exist.
      */
-    public static function getPrestigePermissions(int $prestige, string $type = "added") : ?array {
+    public static function getPrestigePermissions(int $prestige, string $type) : ?array {
         switch (strtolower($type)) {
             case "added":
                 return self::getPrestiges()[$prestige]['added-permissions'];
