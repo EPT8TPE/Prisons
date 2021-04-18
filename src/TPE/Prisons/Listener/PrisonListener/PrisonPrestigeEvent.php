@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TPE\Prisons\Listener\PrisonListener;
 
+use _64FF00\PurePerms\PurePerms;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use TPE\Prisons\Prisons;
