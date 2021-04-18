@@ -66,13 +66,17 @@ final class Utils {
             case "added":
                 if(self::getRanks()[$rank]) {
                     return self::getRanks()[$rank]['added-permissions'];
+                } else {
+                    return [];
                 }
             break;
 
             case "removed":
                 if(self::getRanks()[$rank]) {
                     return self::getRanks()[$rank]['removed-permissions'];
-                } 
+                } else {
+                    return [];
+                }
             break;
 
             default:
@@ -95,13 +99,17 @@ final class Utils {
             case "added":
                 if(self::getPrestiges()[$prestige]) {
                     return self::getPrestiges()[$prestige]['added-permissions'];
-                } 
+                } else {
+                    return [];
+                }
             break;
 
             case "removed":
                 if(self::getPrestiges()[$prestige]) {
                     return self::getPrestiges()[$prestige]['removed-permissions'];
-                } 
+                } else {
+                    return [];
+                }
             break;
 
             default:
@@ -142,7 +150,9 @@ final class Utils {
     public static function getPrestigePrice(int $prestige) : ?int {
         if(self::getPrestiges()[$prestige]) {
             return self::getPrestiges()[$prestige]['price'];
-        } 
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -155,7 +165,9 @@ final class Utils {
     public static function getRankCommands(string $rank) : ?array {
         if(self::getRanks()[$rank]) {
             return self::getRanks()[$rank]['commands'];
-        } 
+        } else {
+            return [];
+        }
     }
 
     /**
@@ -169,7 +181,9 @@ final class Utils {
     public static function getPrestigeCommands(int $prestige) : ?array {
         if(self::getPrestiges()[$prestige]) {
             return self::getPrestiges()[$prestige]['commands'];
-        } 
+        } else {
+            return [];
+        }
     }
 
     /**
@@ -182,7 +196,9 @@ final class Utils {
     public static function getRankName(string $rank) : ?string {
         if(self::getRanks()[$rank]) {
             return self::getRanks()[$rank]['rankName'];
-        } 
+        } else {
+            return "";
+        }
     }
 
     /**
