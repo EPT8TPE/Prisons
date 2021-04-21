@@ -21,7 +21,7 @@ class PlayerManager {
     
       Prisons::get()->getDataBase()->executeSelect("prisons.load", [], function (array $rows) : void {
           foreach($rows as $row) {
-              $this->players[$row["uuid"]] = new PrisonPlayer(UUID::fromString($row["uuid"]), $row["username"], $role["prisonrank"], $role["prestige"]);
+              $this->players[$row["uuid"]] = new PrisonPlayer(UUID::fromString($row["uuid"]), $row["username"], $row["prisonrank"], $row["prestige"]);
           }
       });
   }
