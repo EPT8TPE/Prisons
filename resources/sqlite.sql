@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS prisons_players (
 
 -- #  { initplayer
 SELECT *
-FROM players
+FROM prisons_players
 -- #  }
 
 -- #  { create
