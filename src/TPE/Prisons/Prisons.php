@@ -13,6 +13,7 @@ use falkirks\minereset\Mine;
 use pocketmine\block\Block;
 use TPE\Prisons\Commands\RankUpCommand;
 use TPE\Prisons\Commands\PrestigeCommand;
+use TPE\Prisons\PlayerManager;
 
 final class Prisons extends PluginBase {
 
@@ -26,6 +27,10 @@ final class Prisons extends PluginBase {
 
     /** @var string */
     public $permissionManager;
+    
+    /** @var PlayerManager **/
+    
+    private $playerManager;
 
     public function onLoad() {
         self::$instance = $this;
@@ -36,13 +41,17 @@ final class Prisons extends PluginBase {
         $this->saveDefaultConfig();
         $this->checkUpdate();
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
+        $this->playerManager = new PlayerManager();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->registerCommands();
         $this->permissionManager = "pureperms";
     }
     
     public function onDisable() : void {
-        if($this->database instanceof DataConnector) $this->database->close();
+        if($this->database instanceof DataConnector) {
+            $this->database->waitAll();
+            $this->database->close();
+        }
     }
 
     public function checkUpdate() : void {
@@ -86,6 +95,10 @@ final class Prisons extends PluginBase {
      */
     public function getPermissionManager() : string {
         return $this->permissionManager;
+    }
+    
+    public function getPlayerManager() : PlayerManager {
+        return $this->playerManager;
     }
 
     /**
