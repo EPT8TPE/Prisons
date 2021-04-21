@@ -8,7 +8,6 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use poggit\libasynql\DataConnector;
 use poggit\libasynql\libasynql;
-use TPE\Prisons\Data\BaseDB;
 use TPE\Prisons\Listener\EventListener;
 use falkirks\minereset\Mine;
 use pocketmine\block\Block;
