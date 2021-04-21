@@ -49,66 +49,55 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
             return;
         }
 
-        Prisons::get()->getPrisonRank($sender, function (array $rows) use($sender) {
-            $currentRank = "";
-            
-            foreach ($rows as $row) {
-                $currentRank = $row['prisonrank'];
-            }
+        $member = Prisons::get()->getPlayerManager()->getPlayer($sender);
+        $currentRank = $member->getPrisonRank();
 
-            if($currentRank !== "z") {
-                if(!is_null(Utils::getMessage("not-rank-z"))) {
-                    $sender->sendMessage(Utils::getMessage("not-rank-z"));
-                } else {
+        if($currentRank !== "z") {
+            if(!is_null(Utils::getMessage("not-rank-z"))) {
+                $sender->sendMessage(Utils::getMessage("not-rank-z"));
+            } else {
+                $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
+            }
+            return;
+        }
+        
+        $currentPrestige = $member->getPrestige();
+
+        $nextPrestige = $currentPrestige;
+        $nextPrestige++;
+
+        if($nextPrestige > array_key_last(Utils::getPrestiges())) {
+              if(!is_null(Utils::getMessage("max-prestige-level"))) {
+                   $sender->sendMessage(Utils::getMessage("max-prestige-level"));
+              } else {
+                   $sender->sendMessage(TextFormat::RED . "You are at the max prestige level!");
+              }
+              return;
+         }
+
+        if(Utils::processTransaction($sender, Utils::getPrestigePrice($nextPrestige))) {
+              (new PrisonPrestigeEvent($sender, $nextPrestige, $currentPrestige, Utils::getPrestigeCommands($currentPrestige), Utils::getPrestigePermissions($currentPrestige, "added"), Utils::getPrestigePermissions($currentPrestige, "removed")));
+
+              if(empty(Prisons::get()->getConfig()->get("world-name"))) {
+                   $sender->teleport(Prisons::get()->getServer()->getDefaultLevel()->getSpawnLocation());
+              } else {
+                   $sender->teleport(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")));
+              }
+
+              if(!is_null(Utils::getMessage("successfully-prestiged"))) {
+                   $message = Utils::getMessage("successfully-prestiged");
+                   $sender->sendMessage(str_replace("{PRESTIGE}", $nextPrestige, $message));
+              } else {
+                   $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
+              }
+        } else {
+              if(!is_null(Utils::getMessage("not-enough-money-prestige"))) {
+                    $message = Utils::getMessage("not-enough-money-prestige");
+                    $sender->sendMessage(str_replace("{NEEDED}", Utils::getPrestigePrice($currentPrestige), $message));
+              } else {
                     $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
-                }
-                return;
-            }
-
-            Prisons::get()->getPrisonPrestige($sender, function (array $rows) use($sender) {
-                $currentPrestige = 0;
-                
-                foreach ($rows as $row) {
-                    $currentPrestige = $rows['prestige'];
-                }
-
-                $nextPrestige = $currentPrestige;
-                $nextPrestige++;
-
-                if($nextPrestige > array_key_last(Utils::getPrestiges())) {
-                    if(!is_null(Utils::getMessage("max-prestige-level"))) {
-                        $sender->sendMessage(Utils::getMessage("max-prestige-level"));
-                    } else {
-                        $sender->sendMessage(TextFormat::RED . "You are at the max prestige level!");
-                    }
-                    return;
-                }
-
-                if(Utils::processTransaction($sender, Utils::getPrestigePrice($nextPrestige))) {
-                    (new PrisonPrestigeEvent($sender, $nextPrestige, $currentPrestige, Utils::getPrestigeCommands($currentPrestige), Utils::getPrestigePermissions($currentPrestige, "added"), Utils::getPrestigePermissions($currentPrestige, "removed")));
-
-                    if(empty(Prisons::get()->getConfig()->get("world-name"))) {
-                        $sender->teleport(Prisons::get()->getServer()->getDefaultLevel()->getSpawnLocation());
-                    } else {
-                        $sender->teleport(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")));
-                    }
-
-                    if(!is_null(Utils::getMessage("successfully-prestiged"))) {
-                        $message = Utils::getMessage("successfully-prestiged");
-                        $sender->sendMessage(str_replace("{PRESTIGE}", $nextPrestige, $message));
-                    } else {
-                        $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
-                    }
-                } else {
-                    if(!is_null(Utils::getMessage("not-enough-money-prestige"))) {
-                        $message = Utils::getMessage("not-enough-money-prestige");
-                        $sender->sendMessage(str_replace("{NEEDED}", Utils::getPrestigePrice($currentPrestige), $message));
-                    } else {
-                        $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
-                    }
-                }
-             });
-        });
+              }
+        }
     }
 
     public function getPlugin(): Plugin {
