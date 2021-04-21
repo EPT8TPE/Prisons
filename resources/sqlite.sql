@@ -2,7 +2,7 @@
 -- #{ prisons
 -- #  { init
 CREATE TABLE IF NOT EXISTS prisons_players (
-    uuid VARCHAR(36) PRIMARY KEY
+    uuid VARCHAR(36) PRIMARY KEY,
     username VARCHAR(16),
     prisonrank STRING DEFAULT 'a',
     prestige INT DEFAULT 0
