@@ -90,60 +90,6 @@ final class Prisons extends PluginBase {
     }
 
     /**
-     * @param Player $player
-     * @param callable $callable
-     * @return void
-     *
-     * Get the prison rank of a specified player.
-     */
-    public function getPrisonRank(Player $player, callable $callable) : void {
-        $this->database->executeSelect(BaseDB::GET_PRISON_RANK, [
-            "username" => $player->getLowerCaseName(),
-        ], $callable);
-    }
-
-    /**
-     * @param Player $player
-     * @param string $rank
-     * @return void
-     *
-     * Set the prison rank of a specified player.
-     */
-    public function setPrisonRank(Player $player, string $rank) : void {
-        $this->getDatabaseConnector()->executeChange(
-            BaseDB::UPDATE_RANK,
-            ['username' => $player->getLowerCaseName(), 'prisonrank' => $rank]
-        );
-    }
-
-    /**
-     * @param Player $player
-     * @param callable $callable
-     * @return void
-     *
-     * Get the prison prestige level of a specified player.
-     */
-    public function getPrisonPrestige(Player $player, callable $callable) : void {
-        $this->database->executeSelect(BaseDB::GET_PRISON_PRESTIGE, [
-            "username" => $player->getLowerCaseName(),
-        ], $callable);
-    }
-
-    /**
-     * @param Player $player
-     * @param int $prestige
-     * @return void
-     *
-     * Set the prison prestige level of a specified player.
-     */
-    public function setPrisonPrestige(Player $player, int $prestige) : void {
-        $this->getDatabaseConnector()->executeChange(
-            BaseDB::UPDATE_PRESTIGE,
-            ["username" => $player->getLowerCaseName(), "prestige" => $prestige]
-        );
-    }
-
-    /**
      * @param Block $block
      * @return bool
      *
