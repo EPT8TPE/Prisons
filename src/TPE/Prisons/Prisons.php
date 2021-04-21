@@ -75,7 +75,7 @@ final class Prisons extends PluginBase {
      */
     private function initDatabase() : void {
         $this->database = $database = libasynql::create($this, $this->getConfig()->get("database"), ["mysql" => "mysql.sql", "sqlite" => "sqlite.sql"]);
-        $this->database->executeGeneric("prisons.init");
+        $this->database->executeGeneric("prisons.initplayer");
         $this->database->waitAll();
     }
 
