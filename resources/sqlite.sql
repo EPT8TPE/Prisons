@@ -19,7 +19,7 @@ FROM players
 -- #      :username string
 -- #      :prisonrank string
 -- #      :prestige int
-INSERT INTO players (uuid, username, prisonrank, prestige)
+INSERT INTO prisons_players (uuid, username, prisonrank, prestige)
 VALUES (:uuid, :username, :prisonrank, :prestige)
 -- #  }
 
@@ -28,7 +28,7 @@ VALUES (:uuid, :username, :prisonrank, :prestige)
 -- #      :username string
 -- #      :prisonrank string
 -- #      :prestige int
-UPDATE players 
+UPDATE prisons_players 
 SET username=:username
     prisonrank=:prisonrank,
     prestige=:prestige
