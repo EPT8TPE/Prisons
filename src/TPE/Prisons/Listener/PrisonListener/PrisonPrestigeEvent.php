@@ -36,6 +36,7 @@ final class PrisonPrestigeEvent extends PrisonPlayerEvent {
 
         $member = Prisons::get()->getPlayerManager()->getPlayer($this->getPlayer());
         $member->setPrestige($newPrestige);
+        $member->setPrisonRank("a");
 
         foreach ($this->getCommands() as $command) {
             Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $this->getPlayer()->getName(), $command));
