@@ -84,7 +84,7 @@ final class Prisons extends PluginBase {
      *
      * Returns a data connector that is used with libasyncsql.
      */
-    public function getDatabaseConnector() : DataConnector {
+    public function getDataBase() : DataConnector {
         return $this->database;
     }
 
@@ -97,6 +97,10 @@ final class Prisons extends PluginBase {
         return $this->permissionManager;
     }
     
+    /** @return PlayerManager
+    *
+    * Returns a class used to get player data.
+    */
     public function getPlayerManager() : PlayerManager {
         return $this->playerManager;
     }
