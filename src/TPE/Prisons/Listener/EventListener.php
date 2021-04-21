@@ -22,7 +22,7 @@ final class EventListener implements Listener {
      */
     public function onPlayerLogin(PlayerJoinEvent $event) : void {
         $player = $event->getPlayer();
-        if(($p = Prisons::get()->getPlayerManager()->getPlayer($player)) === null) $member = Prisons::get()->getPlayerManager()->createPlayer($player);
+        if(($member = Prisons::get()->getPlayerManager()->getPlayer($player)) === null) $member = Prisons::get()->getPlayerManager()->createPlayer($player);
         if($member->getUsername() !== $player->getName()) $member->setUsername($player->getName());
     }
 
