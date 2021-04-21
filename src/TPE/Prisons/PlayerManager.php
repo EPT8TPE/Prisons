@@ -52,8 +52,7 @@ class PlayerManager {
   public function getPlayersByName(string $name) : ?PrisonPlayer {
       foreach ($this->players as $player) {
             if (strtolower($player->getUsername()) === strtolower($name)) return $player;
-        }
-        return null;
-    }
-  } 
+      }
+      return null;
+  }
 }
