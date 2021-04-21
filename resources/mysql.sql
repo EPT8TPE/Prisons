@@ -28,7 +28,7 @@ VALUES (:uuid, :username, :prisonrank, :prestige);
 -- #      :username string
 -- #      :prisonrank string
 -- #      :prestige int
-UPDATE prison_players 
+UPDATE prisons_players 
 SET username=:username,
     prisonrank=:prisonrank,
     prestige=:prestige
