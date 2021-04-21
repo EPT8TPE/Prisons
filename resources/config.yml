@@ -4,10 +4,6 @@
 
 version: 2.0
 
-# Enable usage of the prestige command by setting this to true, 
-# if you wish to disable prestiging set it to false.
-prestige: true
-
 # Permission manager for prisons, must be either 'pureperms' or
 # 'hierarchy', if you do not specify one of the two then it will
 # be automatically assigned.
@@ -38,6 +34,7 @@ database:
 # added-permissions:
 #  - "test.permission"
 #  - "test2.permission"
+# Do the same for commands.
 
 ranks:
   a:
