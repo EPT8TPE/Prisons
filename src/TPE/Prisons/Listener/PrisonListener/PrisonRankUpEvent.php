@@ -9,7 +9,7 @@ use pocketmine\Player;
 use TPE\Prisons\Prisons;
 use _64FF00\PurePerms\PurePerms;
 
-final class PrisonRankUpEvent extends PrisonPlayerEvent{
+final class PrisonRankUpEvent extends PrisonPlayerEvent {
 
     /** @var string */
     protected $newRank;
@@ -34,7 +34,8 @@ final class PrisonRankUpEvent extends PrisonPlayerEvent{
         $this->addedPerms = $addedPerms;
         $this->removedPerms = $removedPerms;
 
-        Prisons::get()->setPrisonRank($this->getPlayer(), $this->getNewRank());
+        $member = Prisons::get()->getPlayerManager()->getPlayer($this->getPlayer());
+        $member->setPrisonRank($newRank);
 
         foreach ($this->getCommands() as $command) {
             Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $this->getPlayer()->getName(), $command));
