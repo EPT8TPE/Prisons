@@ -19,7 +19,7 @@ class PlayerManager {
   public function __construct() {
       self::$instance = $this;
     
-      Prisons::get()->getDataBase()->executeSelect("prisons.load", [], function (array $rows) : void {
+      Prisons::get()->getDataBase()->executeSelect("prisons.initplayer", [], function (array $rows) : void {
           foreach($rows as $row) {
               $this->players[$row["uuid"]] = new PrisonPlayer(UUID::fromString($row["uuid"]), $row["username"], $row["prisonrank"], $row["prestige"]);
           }
