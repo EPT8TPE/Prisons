@@ -97,12 +97,73 @@ final class Prisons extends PluginBase {
         return $this->permissionManager;
     }
     
-    /** @return PlayerManager
+    /** 
+    * @return PlayerManager
     *
     * Returns a class used to get player data.
     */
     public function getPlayerManager() : PlayerManager {
         return $this->playerManager;
+    }
+    
+    /** 
+    * @param Player $player
+    * @return ?string
+    *
+    * Returns the players current rank if they exist in the 
+    * database else returns null.
+    */
+    public function getPrisonRank(Player $player) : ?string {
+        return $this->getPlayerManager()->getPlayer($player)->getPrisonRank() ?? null;
+    }
+    
+    /** 
+    * @param Player $player
+    * @param string $rank
+    * @return bool
+    *
+    * Set the prison rank of a specific player, returns true
+    * if successfull and false if not.
+    */
+    public function setPrisonRank(Player $player, string $rank) : bool {
+        $member = $this->getPlayerManager()->getPlayer($player) ?? null;
+        if(!is_null($member)) {
+            $member->setPrisonRank($rank);
+            return true;
+        } else {
+            return false;
+        }
+        return false;
+    }
+    
+    /** 
+    * @param Player $player
+    * @return ?int
+    *
+    * Returns the players current prestige if they exist in the 
+    * database else returns null.
+    */
+    public function getPrestige(Player $player) : ?int {
+        return $this->getPlayerManager()->getPlayer($player)->getPrestige() ?? null;
+    }
+    
+    /** 
+    * @param Player $player
+    * @param int $prestige
+    * @return bool
+    *
+    * Set the prestige of a specific player, returns true 
+    * if successfull and false if not.
+    */
+    public function setPrestige(Player $player, int $prestige) : bool {
+        $member = $this->getPlayerManager()->getPlayer($player) ?? null;
+        if(!is_null($member)) {
+            $member->setPrestige($prestige);
+            return true;
+        } else {
+            return false;
+        }
+        return false;
     }
 
     /**
