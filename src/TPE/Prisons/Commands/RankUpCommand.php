@@ -49,47 +49,38 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
             return;
         }
 
-        Prisons::get()->getPrisonRank($sender, function (array $rows) use($sender) {
-            $currentRank = "";
-            foreach ($rows as $row) {
-                $currentRank = $row['prisonrank'];
+        $member = Prisons::get()->getPlayerManager()->getPlayer($sender);
+        $currentRank = $member->getPrisonRank();
+
+        $nextRank = $currentRank;
+        $nextRank++;
+
+        if($nextRank == "aa") {
+            $sender->sendMessage(Utils::getMessage("max-rank"));
+            return;
+        }
+
+        $currentPrestige = $member->getPrestige();
+
+        $price = Utils::getRankUpPrice($currentRank, $currentPrestige);
+
+        if(Utils::processTransaction($sender, $price)) {
+            (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")))->call();
+
+            if(!is_null(Utils::getMessage("ranked-up"))) {
+                $message = Utils::getMessage("ranked-up");
+                $sender->sendMessage(str_replace("{RANK}", Utils::getRankName($nextRank), $message));
+            } else {
+                $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
             }
-
-            $nextRank = $currentRank;
-            $nextRank++;
-
-            if($nextRank == "aa") {
-                $sender->sendMessage(Utils::getMessage("max-rank"));
-                return;
+        } else {
+            if(!is_null(Utils::getMessage("not-enough-money-rankup"))) {
+                $message = Utils::getMessage("not-enough-money-rankup");
+                $sender->sendMessage(str_replace("{NEEDED}", Utils::getRankUpPrice($currentRank, $currentPrestige), $message));
+            } else {
+                $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
             }
-
-            Prisons::get()->getPrisonPrestige($sender, function (array $rows) use($sender, $currentRank, $nextRank) {
-                $currentPrestige = 0;
-                foreach ($rows as $row) {
-                    $currentPrestige = $row['prestige'];
-                }
-
-                $price = Utils::getRankUpPrice($currentRank, $currentPrestige);
-
-                if(Utils::processTransaction($sender, $price)) {
-                    (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")))->call();
-
-                    if(!is_null(Utils::getMessage("ranked-up"))) {
-                        $message = Utils::getMessage("ranked-up");
-                        $sender->sendMessage(str_replace("{RANK}", Utils::getRankName($nextRank), $message));
-                    } else {
-                        $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
-                    }
-                } else {
-                    if(!is_null(Utils::getMessage("not-enough-money-rankup"))) {
-                        $message = Utils::getMessage("not-enough-money-rankup");
-                        $sender->sendMessage(str_replace("{NEEDED}", Utils::getRankUpPrice($currentRank, $currentPrestige), $message));
-                    } else {
-                        $sender->sendMessage(TextFormat::RED . "Configuration error detected!");
-                    }
-                }
-            });
-        });
+        }
     }
 
     public function getPlugin(): Plugin {
