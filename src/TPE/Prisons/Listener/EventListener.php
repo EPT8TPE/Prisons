@@ -9,7 +9,6 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\utils\TextFormat;
-use TPE\Prisons\Data\BaseDB;
 use TPE\Prisons\Prisons;
 use pocketmine\event\player\PlayerJoinEvent;
 use TPE\Prisons\Utils;
@@ -67,7 +66,7 @@ final class EventListener implements Listener {
      */
     public function onChat(PlayerChatEvent $event): void {
         $member = Prisons::get()->getPlayerManager()->getPlayer($event->getPlayer());
-        $format = str_replace(["PRISON_RANK", "PRISON_PRESTIGE"], [$member->getPrisonRank(), $member->getPrestige()], $event->getFormat());
+        $format = str_replace(["{PRISON_RANK}", "{PRISON_PRESTIGE}"], [Utils::getRankName($member->getPrisonRank()), $member->getPrestige()], $event->getFormat());
         $event->setFormat($format);
     }
 }
