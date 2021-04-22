@@ -4,11 +4,6 @@
 
 version: 2.0
 
-# Permission manager for prisons, must be either 'pureperms' or
-# 'hierarchy', if you do not specify one of the two then it will
-# be automatically assigned.
-permission-manager: pureperms
-
 database:
   # The database type. "sqlite" and "mysql" are supported.
   type: sqlite
