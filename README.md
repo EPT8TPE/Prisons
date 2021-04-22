@@ -17,12 +17,14 @@ A pocketmine plugin implementing the legacy prison rank up system in addition to
 - Compatible with both sqlite3 and mysql.
 
 # Commands 
-```- /prestige - Reset your rank and multiply your rank up price by a specified amount.
+```
+- /prestige - Reset your rank and multiply your rank up price by a specified amount.
 - /rankup - Rank up to the next rank.
 ```
 
 # Permissions
-```prisons.*:
+```
+prisons.*:
     default: op
     description: Allows access to all prison commands.
     children:
