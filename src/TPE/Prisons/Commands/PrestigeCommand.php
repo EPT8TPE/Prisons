@@ -13,6 +13,7 @@ use pocketmine\utils\TextFormat;
 use TPE\Prisons\Listener\PrisonListener\PrisonPrestigeEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
+use _64FF00\PurePerms\PurePerms;
 
 final class PrestigeCommand extends Command implements PluginIdentifiableCommand {
 
