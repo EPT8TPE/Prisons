@@ -34,29 +34,6 @@ final class PrisonPrestigeEvent extends PrisonPlayerEvent implements Cancellable
         $this->commands = $commands;
         $this->addedPerms = $addedPerms;
         $this->removedPerms = $removedPerms;
-
-        $member = Prisons::get()->getPlayerManager()->getPlayer($this->getPlayer());
-        $member->setPrestige($newPrestige);
-        $member->setPrisonRank("a");
-
-        foreach ($this->getCommands() as $command) {
-            Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $this->getPlayer()->getName(), $command));
-        }
-
-        $manager = Prisons::get()->getPermissionManager();
-
-        if($manager === "pureperms") {
-            $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
-            if($manager instanceof PurePerms) {
-                foreach ($this->getAddedPermissions() as $permission) {
-                    $manager->getUserDataMgr()->setPermission($this->getPlayer(), $permission);
-                }
-
-                foreach ($this->getRemovedPermissions() as $permission) {
-                    $manager->getUserDataMgr()->unsetPermission($this->getPlayer(), $permission);
-                }
-            }
-        }
     }
 
     public function getNewPrestige() : int {
