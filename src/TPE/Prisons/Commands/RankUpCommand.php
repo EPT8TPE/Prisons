@@ -65,8 +65,30 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
         $price = Utils::getRankUpPrice($currentRank, $currentPrestige);
 
         if(Utils::processTransaction($sender, $price)) {
-            (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")))->call();
+            $event = (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")))->call();
 
+            $member = Prisons::get()->getPlayerManager()->getPlayer($event->getPlayer());
+            $member->setPrisonRank($nextRank);
+
+            foreach ($event->getCommands() as $command) {
+                Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
+            }
+
+            $manager = Prisons::get()->getPermissionManager();
+
+            if($manager === "pureperms") {
+                $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
+                if($manager instanceof PurePerms) {
+                    foreach ($event->getAddedPermissions() as $permission) {
+                        $manager->getUserDataMgr()->setPermission($event->getPlayer(), $permission);
+                    }
+
+                    foreach ($event->getRemovedPermissions() as $permission) {
+                        $manager->getUserDataMgr()->unsetPermission($event->getPlayer(), $permission);
+                    }
+                }
+            }
+            
             if(!is_null(Utils::getMessage("ranked-up"))) {
                 $message = Utils::getMessage("ranked-up");
                 $sender->sendMessage(str_replace("{RANK}", Utils::getRankName($nextRank), $message));
