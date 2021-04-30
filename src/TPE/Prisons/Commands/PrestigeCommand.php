@@ -76,8 +76,32 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
          }
 
         if(Utils::processTransaction($sender, Utils::getPrestigePrice($nextPrestige))) {
-              (new PrisonPrestigeEvent($sender, $nextPrestige, $currentPrestige, Utils::getPrestigeCommands($currentPrestige), Utils::getPrestigePermissions($currentPrestige, "added"), Utils::getPrestigePermissions($currentPrestige, "removed")));
+              $event = (new PrisonPrestigeEvent($sender, $nextPrestige, $currentPrestige, Utils::getPrestigeCommands($currentPrestige), Utils::getPrestigePermissions($currentPrestige, "added"), Utils::getPrestigePermissions($currentPrestige, "removed")));
+              if($event->isCancelled()) return;
+              
+              $member = Prisons::get()->getPlayerManager()->getPlayer($event->getPlayer());
+              $member->setPrestige($nextPrestige);
+              $member->setPrisonRank("a");
 
+              foreach ($event->getCommands() as $command) {
+                  Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
+              }
+
+              $manager = Prisons::get()->getPermissionManager();
+
+              if($manager === "pureperms") {
+                  $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
+                  if($manager instanceof PurePerms) {
+                      foreach ($event->getAddedPermissions() as $permission) {
+                           $manager->getUserDataMgr()->setPermission($event->getPlayer(), $permission);
+                      }
+ 
+                      foreach ($event->getRemovedPermissions() as $permission) {
+                           $manager->getUserDataMgr()->unsetPermission($event->getPlayer(), $permission);
+                      }
+                  }
+              }
+              
               if(empty(Prisons::get()->getConfig()->get("world-name"))) {
                    $sender->teleport(Prisons::get()->getServer()->getDefaultLevel()->getSpawnLocation());
               } else {
