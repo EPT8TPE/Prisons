@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace TPE\Prisons\Listener\PrisonListener;
 
+use pocketmine\event\Cancellable;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\Player;
 use TPE\Prisons\Prisons;
 use _64FF00\PurePerms\PurePerms;
 
-final class PrisonRankUpEvent extends PrisonPlayerEvent {
+final class PrisonRankUpEvent extends PrisonPlayerEvent implements Cancellable {
 
     /** @var string */
     protected $newRank;
