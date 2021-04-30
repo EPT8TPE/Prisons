@@ -14,6 +14,7 @@ use TPE\Prisons\Listener\PrisonListener\PrisonRankUpEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
 use _64FF00\PurePerms\PurePerms;
+use pocketmine\command\ConsoleCommandSender;
 
 final class RankUpCommand extends Command implements PluginIdentifiableCommand {
 
@@ -66,7 +67,9 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
         $price = Utils::getRankUpPrice($currentRank, $currentPrestige);
 
         if(Utils::processTransaction($sender, $price)) {
-            $event = (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")))->call();
+            $event = (new PrisonRankUpEvent($sender, (string)$nextRank, $currentRank, Utils::getRankCommands($currentRank), Utils::getRankPermissions($currentRank, "added"), Utils::getRankPermissions($currentRank, "removed")));
+            $event->call();
+            if($event->isCancelled()) return;
 
             $member = Prisons::get()->getPlayerManager()->getPlayer($event->getPlayer());
             $member->setPrisonRank($nextRank);
