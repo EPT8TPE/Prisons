@@ -13,6 +13,7 @@ use pocketmine\utils\TextFormat;
 use TPE\Prisons\Listener\PrisonListener\PrisonRankUpEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
+use _64FF00\PurePerms\PurePerms;
 
 final class RankUpCommand extends Command implements PluginIdentifiableCommand {
 
