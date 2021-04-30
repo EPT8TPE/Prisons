@@ -14,6 +14,7 @@ use TPE\Prisons\Listener\PrisonListener\PrisonPrestigeEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
 use _64FF00\PurePerms\PurePerms;
+use pocketmine\command\ConsoleCommandSender;
 
 final class PrestigeCommand extends Command implements PluginIdentifiableCommand {
 
@@ -78,6 +79,7 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
 
         if(Utils::processTransaction($sender, Utils::getPrestigePrice($nextPrestige))) {
               $event = (new PrisonPrestigeEvent($sender, $nextPrestige, $currentPrestige, Utils::getPrestigeCommands($currentPrestige), Utils::getPrestigePermissions($currentPrestige, "added"), Utils::getPrestigePermissions($currentPrestige, "removed")));
+              $event->call();
               if($event->isCancelled()) return;
               
               $member = Prisons::get()->getPlayerManager()->getPlayer($event->getPlayer());
