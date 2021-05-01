@@ -2,7 +2,7 @@
 
 # Version, do not change.
 
-version: 2.0
+version: 2.1
 
 database:
   # The database type. "sqlite" and "mysql" are supported.
@@ -232,7 +232,7 @@ messages:
   max-rank: "§cYou are at the max rank, please prestige!"
   ranked-up: "§aSuccessfully ranked up to §b{RANK}§a!"
   not-enough-money-rankup: "§aYou require §b${NEEDED} §ain order to rank up!"
-  not-rank-z: "§cYou must be rank Z in order to prestige, you are rank §b{RANK}§c!"
+  not-rank-z: "§cYou must be rank Z in order to prestige!"
   max-prestige-level: "§cYou are already at the max prestige level!"
   successfully-prestiged: "§aSuccessfully prestiged to prestige level §b{PRESTIGE}§a!"
   not-enough-money-prestige: "§cYou require §b${NEEDED} §ain order to prestige to the next prestige level!"
