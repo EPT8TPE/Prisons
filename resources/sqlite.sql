@@ -29,7 +29,7 @@ VALUES (:uuid, :username, :prisonrank, :prestige)
 -- #      :prisonrank string
 -- #      :prestige int
 UPDATE prisons_players 
-SET username=:username
+SET username=:username,
     prisonrank=:prisonrank,
     prestige=:prestige
 WHERE uuid = :uuid;
