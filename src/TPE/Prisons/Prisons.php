@@ -48,7 +48,7 @@ final class Prisons extends PluginBase {
     }
     
     public function onDisable() : void {
-        if($this->database instanceof DataConnector) {
+        if($this->database !== null) {
             $this->database->waitAll();
             $this->database->close();
         }
