@@ -33,9 +33,7 @@ class PlayerManager {
   public function createPlayer(Player $player) : PrisonPlayer {
       Prisons::get()->getDataBase()->executeInsert("prisons.create", [
           "uuid" => $player->getUniqueId()->toString(),
-          "username" => $player->getName(),
-          "prisonrank" => "a",
-          "prestige" => 0
+          "username" => $player->getName()
       ]);
       $this->players[$player->getUniqueId()->toString()] = new PrisonPlayer($player->getUniqueId(), $player->getName(), "a", 0);
       return $this->players[$player->getUniqueId()->toString()];
