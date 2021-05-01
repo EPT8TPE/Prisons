@@ -37,9 +37,9 @@ final class Prisons extends PluginBase {
     }
 
     public function onEnable() {
+        $this->checkUpdate();
         $this->initDatabase();
         $this->saveDefaultConfig();
-        $this->checkUpdate();
         $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
         $this->playerManager = new PlayerManager();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
@@ -55,9 +55,11 @@ final class Prisons extends PluginBase {
     }
 
     public function checkUpdate() : void {
-        if($this->getConfig()->get("version") !== 2.0) {
+        if($this->getConfig()->get("version") !== 2.1) {
             $this->getLogger()->notice("Your configuration file is outdated, updating...");
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
+            rename($this->getDataFolder() . "sqlite.sql", $thus->getDataFolder() . "old_sqlitel.sql");
+            rename($this->getDataFolder() . "mysql.sql", $this->getDataFolder() . "old_mysql.sql");
             $this->saveDefaultConfig();
             $this->getConfig()->reload();
         }
