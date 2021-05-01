@@ -58,7 +58,7 @@ final class Prisons extends PluginBase {
         if($this->getConfig()->get("version") !== 2.1) {
             $this->getLogger()->notice("Your configuration file is outdated, updating...");
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
-            rename($this->getDataFolder() . "sqlite.sql", $thus->getDataFolder() . "old_sqlitel.sql");
+            rename($this->getDataFolder() . "sqlite.sql", $this->getDataFolder() . "old_sqlite.sql");
             rename($this->getDataFolder() . "mysql.sql", $this->getDataFolder() . "old_mysql.sql");
             $this->saveDefaultConfig();
             $this->getConfig()->reload();
