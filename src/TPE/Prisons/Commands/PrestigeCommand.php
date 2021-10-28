@@ -108,7 +108,11 @@ final class PrestigeCommand extends Command implements PluginIdentifiableCommand
               if(empty(Prisons::get()->getConfig()->get("world-name"))) {
                    $sender->teleport(Prisons::get()->getServer()->getDefaultLevel()->getSpawnLocation());
               } else {
-                   $sender->teleport(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")));
+                   if(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")) === null) {
+                       $sender->sendMessage(TextFormat::RED . "World specified in config is invalid, please contact an admin!");
+                   } else {
+                       $sender->teleport(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")));
+                   }
               }
 
               if(!is_null(Utils::getMessage("successfully-prestiged"))) {
