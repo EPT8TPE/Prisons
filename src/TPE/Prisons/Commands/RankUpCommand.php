@@ -6,7 +6,6 @@ namespace TPE\Prisons\Commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
@@ -15,14 +14,23 @@ use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
 use _64FF00\PurePerms\PurePerms;
 use pocketmine\command\ConsoleCommandSender;
+use pocketmine\plugin\PluginOwned;
 
-final class RankUpCommand extends Command implements PluginIdentifiableCommand {
+final class RankUpCommand extends Command implements PluginOwned {
 
+    /**
+    * RankUpCommand constructor.
+    */
     public function __construct() {
         parent::__construct("rankup", "Prison rank up command.", null, ["ru"]);
         $this->setPermission("prisons.rankup");
     }
 
+     /**
+     * @param CommandSender $sender
+     * @param string $commandLabel
+     * @param array $args
+     */
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
         if(!$this->testPermission($sender)) {
             if(!is_null(Utils::getMessage("no-perms"))) {
@@ -77,19 +85,16 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
             foreach ($event->getCommands() as $command) {
                 Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
             }
+                
+            $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
+            
+            if($manager instanceof PurePerms) {
+                foreach ($event->getAddedPermissions() as $permission) {
+                    $manager->getUserDataMgr()->setPermission($event->getPlayer(), $permission);
+                }
 
-            $manager = Prisons::get()->getPermissionManager();
-
-            if($manager === "pureperms") {
-                $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
-                if($manager instanceof PurePerms) {
-                    foreach ($event->getAddedPermissions() as $permission) {
-                        $manager->getUserDataMgr()->setPermission($event->getPlayer(), $permission);
-                    }
-
-                    foreach ($event->getRemovedPermissions() as $permission) {
-                        $manager->getUserDataMgr()->unsetPermission($event->getPlayer(), $permission);
-                    }
+                foreach ($event->getRemovedPermissions() as $permission) {
+                    $manager->getUserDataMgr()->unsetPermission($event->getPlayer(), $permission);
                 }
             }
             
@@ -109,7 +114,10 @@ final class RankUpCommand extends Command implements PluginIdentifiableCommand {
         }
     }
 
-    public function getPlugin(): Plugin {
+    /**
+    * @return Plugin
+    */
+    public function getOwningPlugin(): Plugin {
         return Prisons::get();
     }
 
