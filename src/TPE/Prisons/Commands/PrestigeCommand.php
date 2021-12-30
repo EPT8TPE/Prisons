@@ -140,6 +140,6 @@ final class PrestigeCommand extends Command implements PluginOwned {
      * @return Plugin
      */
     public function getOwningPlugin(): Plugin {
-        return Prisons::getInstance();
+        return Prisons::get();
     }
 }
