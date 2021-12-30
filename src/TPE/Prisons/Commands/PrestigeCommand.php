@@ -116,7 +116,7 @@ final class PrestigeCommand extends Command implements PluginOwned {
                    if(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")) === null) {
                        $sender->sendMessage(TextFormat::RED . "World specified in config is invalid, please contact an admin!");
                    } else {
-                       $sender->teleport(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("world-name"))->getSpawnLocation()a);
+                       $sender->teleport(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("world-name"))->getSpawnLocation());
                    }
               }
 
