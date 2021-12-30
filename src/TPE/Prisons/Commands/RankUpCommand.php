@@ -83,7 +83,7 @@ final class RankUpCommand extends Command implements PluginOwned {
             $member->setPrisonRank($nextRank);
 
             foreach ($event->getCommands() as $command) {
-                Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
+                Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(Prisons::get()->getServer(), Prisons::get()->getServer()->getLanguage()), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
             }
                 
             $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
