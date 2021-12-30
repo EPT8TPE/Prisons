@@ -30,10 +30,10 @@ final class EventListener implements Listener {
      * @return void
      */
     public function onBreak(BlockBreakEvent $event) : void {
-        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->getLevel() === Utils::getPlotWorld() || $event->getPlayer()->hasPermission("prisons.nomine.bypass"))  {
+        if($event->getPlayer()->getWorld()->getFolderName() === Utils::getPlotWorld()->getFolderName() || $event->getPlayer()->hasPermission("prisons.nomine.bypass"))  {
             return;
         } else {
-            $event->setCancelled();
+            $event->cancel();
             if(!is_null(Utils::getMessage("no-breaking-here"))) {
                 $event->getPlayer()->sendMessage(Utils::getMessage("no-breaking-here"));
             } else {
@@ -47,10 +47,10 @@ final class EventListener implements Listener {
      * @return void
      */
     public function onPlace(BlockPlaceEvent $event) : void {
-        if(Prisons::get()->isInMine($event->getBlock()) || $event->getPlayer()->getLevel() === Utils::getPlotWorld() || $event->getPlayer()->hasPermission("prisons.nomine.bypass")) {
+        if($event->getPlayer()->getWorld()->getFolderName() === Utils::getPlotWorld()->getFolderName() || $event->getPlayer()->hasPermission("prisons.nomine.bypass")) {
             return;
         } else {
-            $event->setCancelled();
+            $event->cancel();
             if(!is_null(Utils::getMessage("no-placing-here"))) {
                 $event->getPlayer()->sendMessage(Utils::getMessage("no-placing-here"));
             } else {
