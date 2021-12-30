@@ -25,15 +25,14 @@ final class Prisons extends PluginBase {
     /** @var PlayerManager */
     private $playerManager;
 
-    public function onLoad() {
+    public function onLoad() : void {
         self::$instance = $this;
     }
 
-    public function onEnable() {
+    public function onEnable() : void {
         $this->checkUpdate();
         $this->initDatabase();
         $this->saveDefaultConfig();
-        $this->mineReset = $this->getServer()->getPluginManager()->getPlugin("MineReset");
         $this->playerManager = new PlayerManager();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->registerCommands();
