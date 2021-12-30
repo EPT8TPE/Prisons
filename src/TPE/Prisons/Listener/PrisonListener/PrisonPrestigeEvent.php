@@ -9,9 +9,11 @@ use _64FF00\PurePerms\PurePerms;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\player\Player;
 use TPE\Prisons\Prisons;
+use pocketmine\event\CancellableTrait;
 
 final class PrisonPrestigeEvent extends PrisonPlayerEvent implements Cancellable {
-
+    use CancellableTrait;
+    
     /** @var int */
     protected $newPrestige;
 
