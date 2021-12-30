@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace TPE\Prisons;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use poggit\libasynql\DataConnector;
 use poggit\libasynql\libasynql;
 use TPE\Prisons\Listener\EventListener;
-use falkirks\minereset\Mine;
 use pocketmine\block\Block;
 use TPE\Prisons\Commands\RankUpCommand;
 use TPE\Prisons\Commands\PrestigeCommand;
@@ -17,19 +16,13 @@ use TPE\Prisons\PlayerManager;
 
 final class Prisons extends PluginBase {
 
+    /** @var self */
     private static $instance;
 
     /** @var DataConnector */
     private $database;
-    
-    /** @var \falkirks\minereset\MineReset */
-    private $mineReset;
-
-    /** @var string */
-    public $permissionManager;
-    
+   
     /** @var PlayerManager **/
-    
     private $playerManager;
 
     public function onLoad() {
@@ -55,7 +48,7 @@ final class Prisons extends PluginBase {
     }
 
     public function checkUpdate() : void {
-        if($this->getConfig()->get("version") !== 2.1) {
+        if($this->getConfig()->get("version") !== 3.0) {
             $this->getLogger()->notice("Your configuration file is outdated, updating...");
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "old_config.yml");
             rename($this->getDataFolder() . "sqlite.sql", $this->getDataFolder() . "old_sqlite.sql");
@@ -89,15 +82,6 @@ final class Prisons extends PluginBase {
     public function getDataBase() : DataConnector {
         return $this->database;
     }
-
-    /**
-     * @return string
-     *
-     * Returns the name of the desired permission manager.
-     */
-    public function getPermissionManager() : string {
-        return $this->permissionManager;
-    }
     
     /** 
     * @return PlayerManager
@@ -106,23 +90,6 @@ final class Prisons extends PluginBase {
     */
     public function getPlayerManager() : PlayerManager {
         return $this->playerManager;
-    }
-
-    /**
-     * @param Block $block
-     * @return bool
-     *
-     * Returns true if the block the player is mining
-     * is found to be in a registered mine.
-     */
-    public function isInMine(Block $block) : bool {
-        foreach ($this->mineReset->getMineManager() as $mine) {
-            /** @var Mine $mine */
-            if($mine->isPointInside($block)) {
-                return true;
-            }
-        }
-        return false;
     }
     
     public function registerCommands() : void {

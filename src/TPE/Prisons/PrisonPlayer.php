@@ -4,29 +4,32 @@ declare(strict_types = 1);
 
 namespace TPE\Prisons;
 
-use pocketmine\utils\UUID;
-use pocketmine\Player;
+use Ramsey\Uuid\UuidInterface;
+use pocketmine\player\Player;
 use pocketmine\Server;
 
 class PrisonPlayer {
     
-  /** @var UUID **/
+  /** @var UuidInterface **/
   private $uuid;
+    
   /** @var string **/
   private $username;
+    
   /** @var string **/
   private $prisonrank;
+    
   /** @var int **/
   private $prestige;
   
-  public function __construct(UUID $uuid, string $username, string $prisonrank, int $prestige) {
+  public function __construct(UuidInterface $uuid, string $username, string $prisonrank, int $prestige) {
       $this->uuid = $uuid;
       $this->username = $username;
       $this->prisonrank = $prisonrank;
       $this->prestige = $prestige;
   }
   
-  public function getUuid() : Uuid {
+  public function getUuid() : UuidInterface {
       return $this->uuid;
   }
   

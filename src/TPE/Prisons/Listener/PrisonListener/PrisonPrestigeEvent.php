@@ -7,7 +7,7 @@ namespace TPE\Prisons\Listener\PrisonListener;
 use pocketmine\event\Cancellable;
 use _64FF00\PurePerms\PurePerms;
 use pocketmine\command\ConsoleCommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use TPE\Prisons\Prisons;
 
 final class PrisonPrestigeEvent extends PrisonPlayerEvent implements Cancellable {

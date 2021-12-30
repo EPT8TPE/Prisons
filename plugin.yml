@@ -1,15 +1,11 @@
 name: Prisons
 version: 2.1.0
-api: 3.0.0
+api: 4.0.0
 author: TPE
 main: TPE\Prisons\Prisons
 depend:
   - EconomyAPI
-  - MineReset
   - PurePerms
-  - PureChat
-softdepend:
-  - ScoreHud
 
 permissions:
   prisons.*:

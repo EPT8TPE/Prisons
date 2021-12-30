@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace TPE\Prisons;
 
 use onebone\economyapi\EconomyAPI;
-use pocketmine\entity\object\PrimedTNT;
-use pocketmine\level\Level;
-use pocketmine\Player;
+use pocketmine\world\World;
+use pocketmine\player\Player;
 use pocketmine\utils\TextFormat;
 
 final class Utils {
@@ -199,14 +198,14 @@ final class Utils {
     }
 
     /**
-     * @return Level|null
+     * @return World|null
      *
      * Returns the specified plot level if it exists else
      * it will return null.
      */
-    public static function getPlotWorld() : ?Level {
-        if(!is_null(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("plot-world")))) {
-            return Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("plot-world"));
+    public static function getPlotWorld() : ?World {
+        if(!is_null(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("plot-world")))) {
+            return Prisons::get()->getServer()->getWorldManager()getWorldByName((string)Prisons::get()->getConfig()->get("plot-world"));
         } else {
             return null;
         }
