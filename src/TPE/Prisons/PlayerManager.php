@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace TPE\Prisons;
 
 use TPE\Prisons\PrisonPlayer;
-use pocketmine\Player;
-use pocketmine\utils\UUID;
+use pocketmine\player\Player;
+use Ramsey\Uuid\UuidInterface;
 
 class PlayerManager {
   
@@ -21,7 +21,7 @@ class PlayerManager {
     
       Prisons::get()->getDataBase()->executeSelect("prisons.initplayer", [], function (array $rows) : void {
           foreach($rows as $row) {
-              $this->players[$row["uuid"]] = new PrisonPlayer(UUID::fromString($row["uuid"]), $row["username"], $row["prisonrank"], $row["prestige"]);
+              $this->players[$row["uuid"]] = new PrisonPlayer(UuidInterface::fromString($row["uuid"]), $row["username"], $row["prisonrank"], $row["prestige"]);
           }
       });
   }
@@ -41,7 +41,7 @@ class PlayerManager {
       return $this->players[$player->getUniqueId()->toString()];
   }  
   
-  public function getPlayerByUuid(UUID $uuid) : ?PrisonPlayer {
+  public function getPlayerByUuid(UuuidInterface $uuid) : ?PrisonPlayer {
       return $this->players[$uuid->toString()] ?? null;
   }
   
