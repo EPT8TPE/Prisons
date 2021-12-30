@@ -13,7 +13,7 @@ use TPE\Prisons\Listener\PrisonListener\PrisonRankUpEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
 use _64FF00\PurePerms\PurePerms;
-use pocketmine\command\ConsoleCommandSender;
+use pocketmine\console\ConsoleCommandSender;
 use pocketmine\plugin\PluginOwned;
 
 final class RankUpCommand extends Command implements PluginOwned {
