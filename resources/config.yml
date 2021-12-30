@@ -2,7 +2,7 @@
 
 # Version, do not change.
 
-version: 2.1
+version: 3.0
 
 database:
   # The database type. "sqlite" and "mysql" are supported.
