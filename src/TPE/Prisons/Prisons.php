@@ -22,7 +22,7 @@ final class Prisons extends PluginBase {
     /** @var DataConnector */
     private $database;
    
-    /** @var PlayerManager **/
+    /** @var PlayerManager */
     private $playerManager;
 
     public function onLoad() {
@@ -37,7 +37,6 @@ final class Prisons extends PluginBase {
         $this->playerManager = new PlayerManager();
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->registerCommands();
-        $this->permissionManager = "pureperms";
     }
     
     public function onDisable() : void {
