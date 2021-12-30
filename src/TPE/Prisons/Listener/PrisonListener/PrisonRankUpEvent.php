@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace TPE\Prisons\Listener\PrisonListener;
 
 use pocketmine\event\Cancellable;
-use pocketmine\command\ConsoleCommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use TPE\Prisons\Prisons;
 use _64FF00\PurePerms\PurePerms;
+use pocketmine\event\CancellableTrait;
 
 final class PrisonRankUpEvent extends PrisonPlayerEvent implements Cancellable {
+    use CancellableTrait;
 
     /** @var string */
     protected $newRank;

@@ -13,7 +13,7 @@ use TPE\Prisons\Listener\PrisonListener\PrisonPrestigeEvent;
 use TPE\Prisons\Prisons;
 use TPE\Prisons\Utils;
 use _64FF00\PurePerms\PurePerms;
-use pocketmine\command\ConsoleCommandSender;
+use pocketmine\console\ConsoleCommandSender;
 use pocketmine\plugin\PluginOwned;
 
 final class PrestigeCommand extends Command implements PluginOwned {
@@ -95,7 +95,7 @@ final class PrestigeCommand extends Command implements PluginOwned {
               $member->setPrisonRank("a");
 
               foreach ($event->getCommands() as $command) {
-                  Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{PLAYER}", $event->getPlayer()->getName(), $command));
+                  str_replace()Prisons::get()->getServer()->dispatchCommand(new ConsoleCommandSender($this->getServer(), $this->getServer()->getLanguage()), str_replace("{PLAYER"}, $event->getPlayer()->getName(), $command));
               }
 
               $manager = Prisons::get()->getServer()->getPluginManager()->getPlugin("PurePerms");
@@ -113,7 +113,7 @@ final class PrestigeCommand extends Command implements PluginOwned {
               if(empty(Prisons::get()->getConfig()->get("world-name"))) {
                    $sender->teleport(Prisons::get()->getServer()->getWorldManager()->getDefaultWorld()->getSpawnLocation());
               } else {
-                   if(Prisons::get()->getServer()->getLevelByName((string)Prisons::get()->getConfig()->get("world-name")) === null) {
+                   if(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("world-name")) === null) {
                        $sender->sendMessage(TextFormat::RED . "World specified in config is invalid, please contact an admin!");
                    } else {
                        $sender->teleport(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("world-name"))->getSpawnLocation());
