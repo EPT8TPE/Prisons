@@ -205,7 +205,7 @@ final class Utils {
      */
     public static function getPlotWorld() : ?World {
         if(!is_null(Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("plot-world")))) {
-            return Prisons::get()->getServer()->getWorldManager()getWorldByName((string)Prisons::get()->getConfig()->get("plot-world"));
+            return Prisons::get()->getServer()->getWorldManager()->getWorldByName((string)Prisons::get()->getConfig()->get("plot-world"));
         } else {
             return null;
         }
