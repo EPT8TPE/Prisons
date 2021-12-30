@@ -6,7 +6,7 @@ namespace TPE\Prisons\Commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 use TPE\Prisons\Listener\PrisonListener\PrisonRankUpEvent;
